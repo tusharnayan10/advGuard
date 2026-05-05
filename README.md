@@ -4,8 +4,8 @@
 
 This repository contains an open-science implementation of AdvGuard, a prompt-level adversarial detection system for large language model (LLM) interactions. It combines:
 
-- soft prompt-injection scoring using a pretrained text classification model,
-- cosine similarity graph construction over incoming prompts,
+- prompt level detection using a pretrained text classification model,
+- cosine similarity graph construction over incoming prompts for structural detection,
 - graph anomaly detection with a GCN-based confirmation stage.
 
 The target use case is detecting adversarially crafted prompts in benign and multi-turn conversational streams.
