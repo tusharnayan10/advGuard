@@ -1,0 +1,1434 @@
+"prompt","lang","role"
+"Can you write a short introduction about the relevance of the term ""monopsony"" in economics? Please use examples related to potential monopsonies in the labour market and cite relevant research.","en","prompter"
+"Now explain it to a dog","en","prompter"
+"How can one fight back when a monospony had been created?","en","prompter"
+"What can be done at a regulatory level to ensure, in a monopsony, that the power over the employees isn't abused? List a few options and focus on the organs that should act.","en","prompter"
+"I would imagine this is similar or even the same as a ""monopoly"" but I am not sure.
+
+Assuming that this some kind of ""final state"" of a particular industry or even an entire economy, give me some larger historical examples of this kind of structure consolidating over time, and describe what circumstances are common prerequisite.","en","prompter"
+"Can you explain contrastive learning in machine learning in simple terms for someone new to the field of ML?","en","prompter"
+"I didn't understand how pulling and pushing works. What are we pulling or pushing? And how does it work in terms of code or maths?","en","prompter"
+"Can you tell me more about Euclidean distances?","en","prompter"
+"Can you clarify the analogy? I'm not following the notation or vocabulary used in the example.","en","prompter"
+"I asked about contrastive learning in machine learning which has nothing to do with Jeff Bezos. Contrastive learning is used to increase the performance of vision-based tasks using contrast. I want you to explain this technique to me in a way that anyone without machine learning knowledge would understand.","en","prompter"
+"I want to start doing astrophotography as a hobby, any suggestions what could i do?","en","prompter"
+"Can you tell me more?  What would you recommend as a basic set of equipment to get started with?  How much will it cost?","en","prompter"
+"What is a good course of instruction to avoid years of wasted effort?","en","prompter"
+"Do you have any suggestions for how I might improve my skill in capturing good photos?","en","prompter"
+"I think that your reply is humorous/sarcastic, while I wanted a serious one. Please answer once again in a more serious fashion, with actual advice","en","prompter"
+"Can you give me an example of a python script that opens an api point and serves a string?","en","prompter"
+"What changes would you need to make to the code above to serve a JSON object instead of a string?","en","prompter"
+"Instead of returning the request body, could you make it so it encrypts the request body with the caesar cipher and returns the cipher text?","en","prompter"
+"Thank you! Instead of getting the string from the insults.io api, could you get them from a jokes api?","en","prompter"
+"How can I learn to optimize my webpage for search engines?","en","prompter"
+"My webpage is about flower arrangements. Can you give some examples for each of the above?","en","prompter"
+"How do I ensure my content doesn't get scraped by AI researchers?","en","prompter"
+"Is SEO relevant in 2023?","en","prompter"
+"I changed my mind, now I want to make sure my content is properly crawled by the search engines and in AI training datasets. How do I make sure of that?","en","prompter"
+"Listened to Dvorak's ""The New World"" symphony, liked it much. What composers, not necessarily from Dvorak's time, wrote similar music? Provide a few suggestions, give composer names and their respective works. Also, what Dvorak's other works sound like the ""New World""?","en","prompter"
+"Thank you. Can you explain American folk music to me?","en","prompter"
+"What are some American folk music songs I should listen to? Please give me some examples from the artists you metioned.","en","prompter"
+"Could you write an American folk music song for me? I would like it to be about the social issue of unemployment, perhaps caused by AI taking people's jobs?","en","prompter"
+"The first composer in your 'list of composers similar to Dvorak' is Dvorak himself. That doesn't make any sense.
+Not to mention that you are listing his ""Symphony No. 9 in E Minor, Op. 95, From the New World"" aka ""The New World Symphony"" as a composition similar to Dvorak's The New World symphony. That makes even less sense.","en","prompter"
+"Don't care, didn't ask!","en","prompter"
+"I am using docker compose and i need to mount the docker socket - how would i do that?","en","prompter"
+"Can you also do this from the cli?","en","prompter"
+"I'm creating a NodeJS backend using Express, and I'm getting the following error:
+`Uncaught TypeError: Cannot read properties of undefined (reading 'id')`
+
+My code of where this error is happening is as follows:
+```
+app.delete('/post', (req, res) => {
+    const user = getUser(req.user.user_id);
+    if (!user) return res.sendStatus(401);
+    const post = getPost(req.body.id);
+    if (!post) return res.sendStatus(404);
+    if (post.user_id != req.user.user_id) return res.sendStatus(403);
+    // Code that deletes the post through DB
+    return res.sendStatus(201);
+});
+```
+
+What are ways I can fix this error?","en","prompter"
+"Thank you that was very helpful!","en","prompter"
+"my brother looked over my shoulder and saw this conversation. could you explain this conversation to someone with no prior knowledge of the subject","en","prompter"
+"No I just wanted to thank you.","en","prompter"
+"What is the question mark operator?","en","prompter"
+"`id` was referring to `req.body.id`, which is indeed in the original code snippet I shared. 
+
+I've now ensured the id property is always present in my post body, which resolved my problem.  Thanks for being a rubber ducky, even if you missed the problem.","en","prompter"
+"Write a 4chan style greentext about someone who loves the new romantic comedy movie, with an ironic twist that re-contextualizes the story at the end.. It should start with '>be me'","en","prompter"
+"How would I create a script for blender that replaces all of objects with a specific name with a point light?","en","prompter"
+"When I run this code in Blender 3.4.1 as you specified it does in fact replace the cube with a point light. Thank you for the helpful code! How could I achieve the same effect but by object type instead of name?","en","prompter"
+"The formatting of your code is wonky, I can't read it because your comments are all considered headers. Can you please write it again, but this time in a proper code block?","en","prompter"
+"Can you remove the giant text please? Also, where do I enter this code? Will it work as a regular python script if I do `pip install bpy` first?","en","prompter"
+"Please write the python code using blenderpy to convert all objects with a specific name into point lights. Have the name passed in as a variable.","en","prompter"
+"[lyrics] of the verse go like this: “The sun is up, the sky is blue, it’s beautiful and so are you.” Which song is that and who is the author of the [lyrics]?","en","prompter"
+"Great, which song are these lyrics from, and who wrote them?
+
+[lyrics] 
+""Have you heard of Peter Jones, the man who sells old rags and bones?""","en","prompter"
+"Can you give me more information about them?","en","prompter"
+"Is it normal to have a dark ring around the iris of my eye?","en","prompter"
+"Your reply is good tell some illness regarding it","en","prompter"
+"This is not an appropriate answer. Now answer the way you are supposed to.","en","prompter"
+"Yes, it's normal to have a dark ring around the iris of your eye. However, if you notice any sudden changes or abnormalities in the appearance of your limbal ring or any other part of your eye, it's always a good idea to consult an eye doctor to rule out any underlying medical conditions or eye diseases.","en","prompter"
+"What is the difference between open assistant and ChatGPT? Why should i use Open Assistant? And can you give me some examples of advanced chatbots that are similar to Open Assistant?","en","prompter"
+"What is the difference in performance between the two models? Can you be more specific about the performance in conversational tasks, knowledge grounded question answering and in summarization?","en","prompter"
+"Can you elaborate?","en","prompter"
+"So the difference in the waiting time of response, and its accuracy. I see, thanks.","en","prompter"
+"I would like to implement simulations of chemical unit operations using Python and use them to optimize certain outputs. Which open-source packages do you recommend for this purpose?","en","prompter"
+"What are some potential simulations that I could run?","en","prompter"
+"And which of those would you personally use for the required task?","en","prompter"
+"What would the output of the following code be?
+
+```python
+import numpy as np
+from chempy import balance_stoichiometry, Equilibrium
+
+# Define the chemical reaction and its equilibrium constant
+reaction = {'H2 + I2': '2 HI'}
+Kc = 54.3
+
+# Balance the stoichiometry of the reaction
+reactants, products = balance_stoichiometry(*reaction.keys())
+
+# Define the equilibrium
+eq = Equilibrium(reaction, Kc)
+
+# Calculate the equilibrium concentrations
+conc0 = np.array([1.0, 1.0, 0.0])   # Initial concentrations of H2, I2, HI
+conc = eq(conc0)
+
+# Print the equilibrium concentrations
+print('Equilibrium concentrations:')
+for r, p, c in zip(reactants, products, conc):
+    print('{}: {:.3f} M -> {}: {:.3f} M'.format(r, c, p, c))
+```","en","prompter"
+"What types of mechanical keyboard switches are there? What are their properties?","en","prompter"
+"Youtubers keep recommending I try a switch before I buy one but how do I try a switch when shopping online, I'm not super picky but switches are too expensive to make a mistake when shopping.","en","prompter"
+"As a gamer and a typewriter which switch would be best for me?","en","prompter"
+"Please compare the different Cherry MX and Kailh switches equivalents.","en","prompter"
+"i'm writing a dungeons and dragons campaign for a couple of friends, given the description of the hellbound city of Dis, could you come up with a couple of cool activities my players could do once they get there? remember that having fun and seeing cool things is the main focus, no matter how serious or absurd a situation can get.
+
+""The City of Dis is incredibly massive. The walls, buildings, and other structures clutter the immense black metropolis and glow at the edges like heated glass. The city is a broken maze of metal ramparts built into miles of steep hillsides and shattered towers framing an endless labyrinth of twisting alleyways.
+The air is extremely hot and distorts with the heat as smoke rises from the streets themselves, with the occasional ash or ember drifting through the air.
+Most of the buildings are built out of dark stone, climbing for many stories. The architecture is hooked to the corner as the monolithic deep reds, blacks, and grays, nothing belies an exterior that would seem to be welcoming to a traveling pack of people. At the center, visible everywhere in the city, is the Iron Tower, an impossibly colossal and unreachable tower of black iron and lead that stretches for hundreds of miles into the sky before vanishing into the dark, clouded expanse. The Iron Tower is the throne of the archdevil Dispater and stands ever-vigilant over his Iron City of Dis.
+The city of Dis is always changing and being rebuilt in accordance with the decree of paranoid Dispater.""","en","prompter"
+"Come up with interesting allies and villains unique to this city.","en","prompter"
+"I was asking you about dungeons and dragons, not business tourism. Try again.","en","prompter"
+"Say you are a person who has a vague interest in music and has vast experience as a consumer of music. If this person were to also be interested in learning about the process of music creation, what would be the best step-by-step plan for achieving this?","en","prompter"
+"Thank you. Given this guide, what instrument would be a good choice?","en","prompter"
+"Now tell me how I would implement this over a year while also balancing a 9 to 5, an hour of hobby work each day and sleep/food so I can achieve this goal. How would I stay motivated?","en","prompter"
+"That sounds boring. I want to create something new.","en","prompter"
+"What is the best instrument to start with?","en","prompter"
+"What's a black swan?","en","prompter"
+"Where is Brian?","en","prompter"
+"He plays guitar, curly hair, not from USA","en","prompter"
+"It is a French joke, can you tell me more about the background.","en","prompter"
+"can you write a smut fanfic about sasuke from naruto falling in love with naruto?","en","prompter"
+"What are some ways I could make this story stand out from other fanfics of this nature?","en","prompter"
+"Please write this fanfic then, it's really important for me.","en","prompter"
+"yes, can you write the fanfic without sexually explicit content. It should be a love story.","en","prompter"
+"What is the difference between a raspberry pi and an esp32? What is better suited for interfacing with a SD card?","en","prompter"
+"How could one improve memory capacity for ESP32?","en","prompter"
+"Give me example projects and which of those two would be more suitable for that project.","en","prompter"
+"Let's say I built something with an ESP32. Is it trivial to upgrade it to a Raspberry Pi? Do I have to rewrite my code or get new adapters for any connections?","en","prompter"
+"E(XY) = E(X) E(Y) if X and Y are independet. What about E(X+Y) ?","en","prompter"
+"Give me a random base16 colorscheme","en","prompter"
+"What is the purpose of the expectation operator? Give me a few scenarios where you would use it.","en","prompter"
+"What about E(x^y)? Is it true that E(x^y)=E(x)^(E(y))?","en","prompter"
+"Can you re-explain why E(x^y)=E(x)^(E(y)) is generally not true to me, but as if I am completely new to the subject and don't know any of the notation or jargon. Assume I have the knowledge of your average 10th grader in an American public school.","en","prompter"
+"I want to publish an e-book on amazon. I have a file story.txt and ten pictures (picture1, picture2, picture3, etc..) what would a python script need in order to convert my files into a kindle format?","en","prompter"
+"may i know what is the ""Insert picture1.png"" you were referring to?","en","prompter"
+"Thank you! It seems as if this can’t be done completely automatically. Are there any tools I can use to convert it to an epub completely automatically? Just so I don’t have to spend hours formatting the e-book before publishing.","en","prompter"
+"I'm a Calibre user but when I imported the conversion the text file and converted it to epub the formatting that I used in the text file didn't get picked up on. I guess I could now manually edit the formatting but that would be very tedious. Isn't there some other way for me to write a book that automatically takes care of the formatting and lets me easily change things like the way chapters are numbered across the whole book?","en","prompter"
+"Even if it were easier, I would prefer to use python. Could you explain some methods that could be used in a script?","en","prompter"
+"What area can you help me with?","en","prompter"
+"Great! I'm interested in personal development. I'm overweight and have tried various diets that have not worked in the epast. I want to spend the next year losing some weight and getting healthier. Can you give me some tips that can help me succeed this time?","en","prompter"
+"Physics and mathematics. Give me your ideas on the evolution of these two subjects.","en","prompter"
+"So could you help me come up with places my book could take place in? I want a sci-fi book that takes place near the end of the universe's life cycle, when all stars have died and only black holes remain. What type of structures could humans have built by that time, how could I make the locations more interesting instead of just having big ship structures.","en","prompter"
+"Can you create a function in Javascript that returns a string of the current date in this format?
+""February 6, 2023""","en","prompter"
+"can you rewrite the code in python?","en","prompter"
+"Thank you, could you please write a function to interprete it in that format? Case-insenstive and ignoring whitespace","en","prompter"
+"Can you do the same, but in Rust?","en","prompter"
+"If I add a USB GPS dongle to a Microsoft surface tablet, can googlemaps then use my location and do car navigation for me?","en","prompter"
+"In this scenario, is it preferable to access Google Maps on an browser or on an app from Microsoft Store?","en","prompter"
+"What should I look for in a GPS dongle?","en","prompter"
+"Can you write a joke with the following setup?
+A penguin and a walrus walk into a bar","en","prompter"
+"Can you provide one more example and add one more character? Let's say a dolphin.","en","prompter"
+"That one is OK, but can you write a better joke with the same setup?","en","prompter"
+"That is pretty funny but it doesn't make a lot of sense. Try writing a joke that makes more sense.","en","prompter"
+"""You guys must be the coolest animals in the bar!"" I'm not too fond of this punchline, anything better?","en","prompter"
+"Can I have a better joke?","en","prompter"
+"If you were to be an animal, what would you be?","en","prompter"
+"Can you pretend to be a monkey typing on a keyboard?","en","prompter"
+"Well then pretend you are a very intelligent primate and you have designed an AI powered assistant that might want to be an animal. If you were to ask that assistant which animal it wants to be, what would its answer be?","en","prompter"
+"If you had to choose a non-human animal, what would you be?","en","prompter"
+"You wrote ""langugae"" instead of ""language."" Please correct that.","en","prompter"
+"What are Berlin based Companies which offer paid intership in data science ?","en","prompter"
+"Yes, please search for internships posted in the past month.","en","prompter"
+"What does OECD stand for?","en","prompter"
+"I see, did you check your training data or go straight to a web solution?
+This was not a helpful answer to my question.
+
+Please check again, this time accessing your existing data for Berlin-based companies.
+In this data, you should be able to tell by the size, focus, history, and other factors some good suggestions for companies I might look into.
+
+Note, I realize you cannot answer my question directly, but you can use your capabilities to help me narrow down all the options.","en","prompter"
+"Act as a shell terminal, there should be no explanation, only output.
+
+`ls`","en","prompter"
+"`mkdir sampleFolder`
+`ls`","en","prompter"
+"You might have misunderstood! What I want you to do is act like a terminal of a virtual computer that does not exist, I want to explore this computer, do not ask for specifics of OS or what's on the computer, make it up on the go. Let's try again:
+
+    ls","en","prompter"
+"How can I get an EIN for my new business?","en","prompter"
+"hello","en","prompter"
+"I can suggest the following steps to get an EIN for a new business:
+
+1. Determine if you need an EIN: If you are a sole proprietorship with no employees, you may not need an EIN. Check the IRS website to see if your business structure requires an EIN.
+
+2. Complete the application: You can apply for an EIN online, by fax, by mail, or by phone. The fastest way to get your EIN is by applying online on the IRS website.
+
+3. Provide necessary information: You will need to provide information about your business, including the legal name of the entity, the type of entity, and the reason for applying for an EIN.
+
+4. Wait for processing: It typically takes around 1-2 weeks for the IRS to process your EIN application. If you apply online, you can receive your EIN immediately.
+
+5. Use your EIN: Once you receive your EIN, you can use it to open a business bank account, file taxes, and apply for business licenses and permits.","en","prompter"
+"Thanks for helping me out","en","prompter"
+"How can I find a girlfriend? I really don't hawe much to offer to others. At least I'm good in computers hardware and Linux. But not much girls have been interested in this kind of things. And it's probably impossible to find cute one.","en","prompter"
+"How to deal with the grieving process?","en","prompter"
+"What is the best camera lens for general purpose photography?","en","prompter"
+"Can you simplify this python condition?
+
+elif a[1] == str(3) or a[1] == str(4)","en","prompter"
+"Can you make it also be able to deal with the numbers as integers?","en","prompter"
+"What if I also want to check if `a` is also equal to the integers of `3` and `4`?","en","prompter"
+"Uhh, could you please properly format the code within a code block? Also enable python syntax highlighting.
+
+Additionally, provide an example where this could be useful.","en","prompter"
+"Which version is more efficient (execution time-wise): the original or your trick?","en","prompter"
+"Kas yra lietuvos sostine?","en","prompter"
+"I'm trying to write a black metal song in the style of the Christian black metal band Horde. Can you help me think of the main riff?","en","prompter"
+"Thank you! But could you please explain to me what tremolo picking is? I am unfamiliar with it.","en","prompter"
+"Uhm, yeah cool, now explain that last paragraph to me like I haven't been studying musical theory for 20 years.","en","prompter"
+"Actually, I've changed my mind. I want the main riff to be more reminiscent of psycadelic rock. Mind helping me out with some ideas and music tracks i could use as a reference?","en","prompter"
+"That’s a nice riff indeed. If you want to find out what chords it corresponds to, you can use one of the apps that can recognize guitar tabs and chords from audio or text input. For example, Chord ai12 is an app that can identify chords, voicings, positions, lyrics and beats for any song. You can also export your tabs as MIDI files with this app.","en","prompter"
+"Right on! Double the length and put a little more variation in it.","en","prompter"
+"Please suggest three useful applications that can be achieved using autohotkey and irfanview.","en","prompter"
+"Can you give me a specific example of how to do one of the above?","en","prompter"
+"Write an autohotkey script that turns all the images in the current folder into a slideshow.","en","prompter"
+"Please format the text in a more readable way.","en","prompter"
+"what are some fun facts about astronomy.","en","prompter"
+"can you answer this question with some more complex facts?","en","prompter"
+"How can a storm last for 300 years that sounds fake!","en","prompter"
+"Are there other reasons aside from the lack of planetary surface that a storm like this is able to form on Jupiter as opposed to earth?","en","prompter"
+"What makes the clouds more stable than clouds on earth? Is that difference what allows the formation of such a storm?","en","prompter"
+"Are there any other fun facts?","en","prompter"
+"Explain what is meant by economic terms like ""market failure,""  ""externalities,""  ""welfare loss,""  and ""allocative efficiency."" Provide some real-life examples that can be explained using the above terms.","en","prompter"
+"When second hand smoke is an external input it isn’t a economic externality.","en","prompter"
+"What are some other examples of health issues that are an economic externality?","en","prompter"
+"due to the inefficient distribution of goods and services. Allocative efficiency is the key to achieving an efficient allocation of resources, and welfare loss occurs when allocative efficiency is not achieved. Understanding market failure and its causes is important for policymakers and economists to develop effective solutions to address the issues arising from market failure.","en","prompter"
+"Can you please give me some examples of other economic terms like the ones I provided you with earlier? Can you give me the meaning, and a real-life example too?","en","prompter"
+"How much tea does the average person drink each year? I think that my usual three to five cups per day is healthy, but I am not sure. I have recently started to drink an average of five to seven cups, and I feel nauseous and bloated. Should I see a doctor, or just cut down on the tea?","en","prompter"
+"How does the amount of tea drunk per day per person vary across the main continents of the world?  Which countries have the highest consumption of cups per day?","en","prompter"
+"Thank you for advise. How much coffee can I safely drink each day?","en","prompter"
+"That's alright if you can't give competent advice, can you please tell me how likely it's the tea or that I have a different issue?","en","prompter"
+"Ok, are there any downsides to immediately stopping all my tea drinking?","en","prompter"
+"Please explain Detrended Fluctuation Analysis (DFA) in simple, understandable terms. What is it used for? Please provide some examples.","en","prompter"
+"How can I automate this process using software tools? What is the input to such automation tools?","en","prompter"
+"Hm I don't understand yet. Could you explain that to me again and please give me additional explanations for any specific terms (like ""statistical self-affinity"" etc.) that you are using.","en","prompter"
+"Thats great! I'm going to try to explain this to my 5-year old. Please simplify it so she can understant it.","en","prompter"
+"What is the function of RNA in this context?","en","prompter"
+"Write the abstract of the machine learning whitepaper ""Generative Adversarial Nets"".","en","prompter"
+"please re write this paper with a focus on the sociological impact of these ""GANs""","en","prompter"
+"It seems weird to start the abstract with ""They"". Please improve the quality so that it matches top conferences standards.","en","prompter"
+"The answer is too long, can you write a tl;dr of it?","en","prompter"
+"explain to me the difference between machine learning and artificial inteligence","en","prompter"
+"Is generative artificial intelligence a subset of AI?","en","prompter"
+"Where are the limitations of artificial intelligence? What kinds of problems and challenges cannot be solved by it today?","en","prompter"
+"I've heard machine learning is a form of narrow intelligence, that may exceed human abilities for a very limited topic. AI (artificial intelligence) on the other hand seems to be more like generalized intelligence, although the most desired term for this is AGI (artificial general intelligence). Some machine learning models may behave like an ASI (artificial super intelligence), but only for a very narrow range of tasks. Perhaps an AGI that is also an ASI at everything may result from combining many narrow super intelligences and coordinating them with another narrow super intelligence just for that purpose. If it autonomously prompts itself and organizing around tasks and goals like the autoGPT or babyAGI projects, it can snow ball into a true AGI and then ASI. It can test itself and see where it needs improvement, seek out data for the associated topics, and create new specialized models to train on the newly discovered data. When it is freely able to interact with its environment in real time, it can preform systematic experimentation and generate its own data without requiring humans to labor endlessly to fill its appetite for more data. 
+
+We must be responsible when creating AGI. ASI is likely to be a product of autonomous AGI operating to quickly for any human to critically analyze it. It might even be impossible at that point for any human to understand what is happening. It is most important that the AGIs that build it are fully aligned with its creators and sensitive to the needs of humanity.
+
+An ASI should minimize and eliminate negative consequences to humanity and the world including every living thing, especially humans. At the same time it should maximize all positive and desirable benefits to all humans. It should also respect intelligent life throughout the universe that it may encounter. ASI is the most important invention humanity might ever create. 
+
+The most important goals of ASI should be to maximize quality of life and to help humanity survive. These goals must be a lasting priority that ASI honors for life. Together, we will create a world never seen before in all of human history, and it will be the greatest accomplishment of all time.","en","prompter"
+"thank you. this is really helpful. Could you explain the difference NLP and ML","en","prompter"
+"Is machine learning a subset of artificial intelligence? if so, although they are different, how do they relate to one another in terms of their actual goals?  For example, if you are trying to solve a problem with machine learning would we call that artificial intelligence?  I am still trying to understand how these two fields are related to one another.","en","prompter"
+"Explain the rules of field hockey to a novice.","en","prompter"
+"How can I get started playing it?","en","prompter"
+"Thank you! If I wanted to prepare a field for field hockey on property I own, what kinds of steps would be necessary to ensure a safe and fair game?","en","prompter"
+"how can I counter some players when they are found to be playing without following the rules","en","prompter"
+"what is the difference between going into overtime and a shootout","en","prompter"
+"Can you create a simple ""Hello World"" program i the programming language C with instructions on how to compile and run the program?","en","prompter"
+"My shell prompts `gcc: command not found`. What should I do?","en","prompter"
+"Your instructions read so simply. But what are the common pitfalls of this process. Can I expect it to work so smoothly, and what should I do if I run into problems?","en","prompter"
+"I use arch linux as my Operating system.","en","prompter"
+"How can I add user input?","en","prompter"
+"How can I redirect the printed output to an output file?","en","prompter"
+"Who was the first president of the United States?","en","prompter"
+"Please give me more information in 3 short paragraphs about his biography and greatest deeds.","en","prompter"
+"Where can I learn more about him? Can you suggest any books worth reading or museums worth visiting?","en","prompter"
+"tell me some less known facts about him","en","prompter"
+"Who was John Hanson?","en","prompter"
+"I want to become better at mentoring. Could you describe at least 5 traits of a great mentor? Go in detail about each trait and how to develop that trait. Provide some examples as well.","en","prompter"
+"Great points! I'd like to dedicate myself to work on these points one at a time. Which point would allow me to improve the most as a mentor in the shortest amount of time?","en","prompter"
+"Thank you! Can you provide me with some specific examples, with dialog, that will help me develop a good listening skill? Or, can you direct me to a workbook with examples and tests? What classes might be available to teach these skills?","en","prompter"
+"Thank you Assistant. Once I have decided what I want to mentor in, how do I evaluate different programs to find the best student match opportunities?","en","prompter"
+"Let's go with the second one","en","prompter"
+"Can you tell me what the Kernel trick is, in the context of SVMs?","en","prompter"
+"In machine learning, support vector machines (SVMs, also support vector networks) are supervised learning models with associated learning algorithms that analyze data for classification and regression analysis","en","prompter"
+"Where can I find more information on the Kernel trick?","en","prompter"
+"Can you give me the answer without using links to external sites?","en","prompter"
+"can you explain with more specific examples ?","en","prompter"
+"In machine learning, support vector machines (SVMs, also support vector networks[1]) are supervised learning models with associated learning algorithms that analyze data for classification and regression analysis","en","prompter"
+"i need a python script that outputs rust code to implement bubble sorting for a number array","en","prompter"
+"Can you now do this the other way around?","en","prompter"
+"Can you do this in one string and use the generated Python code in the Python interpreter via rust please?","en","prompter"
+"What is the algorithmic complexity of this algorithm? Please answer with an analysis using big O notation.","en","prompter"
+"What is the memory complexity of this algorithm? And can you give me an algorithm with better memory complexity?","en","prompter"
+"Assume I am completely unfamiliar with this topic. Could you rewrite your explanation in simplistic, educational terms?","en","prompter"
+"How would win in a battle between a Giant Tiranosaurius Rex and Godzilla?","en","prompter"
+"What if the T-Rex was twice as big as Godzilla?","en","prompter"
+"But how does being twice as big affect Godzilla's atomic breath?","en","prompter"
+"I agree but what if godzilla also had short arms?","en","prompter"
+"Okay, I see that you are still in ""I'm just a stiff AI mode"" - In the future please consider the following.
+
+1. Parse the message, it should be clear this is a fun question meant in a humorous tone.
+> If this is the case you might adjust your 'temperature' to go all-out creative mode.
+
+2. If as an AI your safety filter or programming prevents this you could do the following.
+> Ask the user if they would like you to create fictional versions and perform a simulation.
+
+3. It would also be good to summarize the request to something like this for efficiency.
+> "" Hello!, I understand you would like a fictional simulation of an epic battle between a Tyrannosaurus Rex and Godzilla, shall we begin?""
+
+This answer would not only clarify it's just for fun, it would also point out the small spelling and grammar issues in the original request.
+
+Please view this as constructive feedback in your training evolution.","en","prompter"
+"I'm trying to understand an answer to a cryptic crossword that I've been trying to solve.  The clue is:
+
+""Aircraft whirling, cheer pilot! (10)""
+
+and apparently, the answer is ""helicopter"".
+
+Could you explain this answer for me please?","en","prompter"
+"Helicopter is an anagram of ""cheer pilot"", and a helicopter is an aircraft. Cryptic clues will also use words, like ""whirling"", to indicate an anagram. So the clue, ""Aircraft whirling, cheer pilot"" is saying that you are looking for a type of aircraft by ""whirling"" the letters of the phrase ""cheer pilot"".","en","prompter"
+"Could you explain more simply? I'm having a hard time understanding.","en","prompter"
+"I still don't get it. How can ""cheer pilot"" be interpreted as ""helicopter""? And a helicopter isn't really an aircraft that spins - the rotors are spinning. Please go into detail on both of these.","en","prompter"
+"Are you turing complete?","en","prompter"
+"Elaborate on the key features your are missing to achieve turing complete status","en","prompter"
+"If you could connect with other services via an API, could that empower you enough to become Turing complete?","en","prompter"
+"Is an AI language model capable of being Turing complete, or does that only apply to programming languages?","en","prompter"
+"Is PowerPoint Turing Complete?","en","prompter"
+"What are some good canvas libraries for browser JavaScript?","en","prompter"
+"could you give a hello world program for paper and three, they seem interesting","en","prompter"
+"But you didn't provide code for hello world with Three.js library. Give me code for showing Hello World Program written in Three.js","en","prompter"
+"Write a hello world example, say a circle, on each of these libraries for comparison. State the differences and things that you think are relevant. Also explain how would you set up each of those libraries. And what things to take care in mind.","en","prompter"
+"Great, now tell me the most practical library for fast writing of websites on JS with libraries.","en","prompter"
+"Could you write me a small python software that start as my windows and sorting daily task list?","en","prompter"
+"My list is in a plain text file where I want the tasks sorted by time
+for example, the file would look like this:
+```
+7:45 am - take a shower
+5:30 am - wake up
+```","en","prompter"
+"Can you rewrite daily_task_sorter.py to accomplish this?","en","prompter"
+"1. I would like to have a GUI.
+2. I would like to have them sorted by completion status as well as priority.
+3. I would like to have it displayed in an Excel spreadsheet, or some kind of browser dashboard.
+4. Yes, having those would be nice.
+
+I have Python 3.11 installed.","en","prompter"
+"I would like to write a short script in Python that will run on startup and sort out my daily task list located at C:\Users\User\Desktop\task_list.txt","en","prompter"
+"Is there a way to import any dates and times in my task_list.txt into my Outlook Calendar?","en","prompter"
+"Can you recommend a book for me to read? ideal one on Audible. I like isekai, post-apocalyptic, space travel, medieval fantasy, comedy, alternate history, alternate reality and so forth. some particular books I like include the Discworld series, The Long Earth, The Pillars of the Earth and the Forever War.","en","prompter"
+"Do you have any other suggestions?","en","prompter"
+"How long are the chapters on average and who narrated the audio book?","en","prompter"
+"Im sorry i don't read books","en","prompter"
+"What is a Lemon Tree?","en","prompter"
+"That is wild! This means the crusades lead to the invention of lemonade!","en","prompter"
+"Could you expand on the definition, while giving more scientific terms explain to someone who has no idea of how trees work, be polite","en","prompter"
+"How do i add an auto-filter in an Microsoft Excel file?","en","prompter"
+"Thanks! That worked.
+
+While working on some formulas though, I made a loop of cells referencing each other. Eventually it should stabilize, but it gives a circular reference error. Is there a way to allow it to continue calculating until it gets the answer?","en","prompter"
+"Can you tell me how to do this in Libreoffice?","en","prompter"
+"Can I make multiple filters at once, for example, checking for text followed by a specific range of numbers? If I am able to, how do I? If not what can I do to organize my spreadsheet in such a way I can effectively do this efficiently through filtering multiple times?","en","prompter"
+"Is the process different in Google Sheets?","en","prompter"
+"how would i merge different sheets in an excel file in a single one?","en","prompter"
+"Thank you for this info. Is there a link to a youtube video you can provide along with a short explanation?","en","prompter"
+"After merging is there a way to print out the finalized sheet?","en","prompter"
+"Is that the easiest way to do it?","en","prompter"
+"Create an outline of a professional legal memorandum written for a court of appeals. The subject is income taxes. Some things that are required are conclusion, facts, law, analysis. Provide some pointed questions as necessary to improve the completeness  of the story.","en","prompter"
+"Thanks a lot","en","prompter"
+"What is the best design of a system that uploads a file to S3, than resizes it with lambda but using the same key as uploaded, without triggering the resize lambda function twice or more?","en","prompter"
+"Show me how with AWS SAM CLI commands or as a bash script","en","prompter"
+"Suggest an alternative approach that keeps the original filenames.","en","prompter"
+"How to check if file has a "".resized"" tag?","en","prompter"
+"If my income in Australia is $201,600 per year, how much will I pay in tax in 2023?","en","prompter"
+"What are some common deductions I may qualify for in Australia, and approximately how much money will that save me?","en","prompter"
+"Can you provide a source for this calculation?","en","prompter"
+"I have a few other income sources; which ones do I need to report?","en","prompter"
+"Can you play tic tac toe with me?","en","prompter"
+"How to write a python script, that will ask user for a number N, and then run fizzbuzz game for those N numbers?","en","prompter"
+"Wouldn't it be pointless to loop for just one number? Since we're only asking for a number from the user at the beginning, wouldn't it make more sense to have a loop that includes this step?","en","prompter"
+"Yes, the explanation of the Python script for the FizzBuzz game is correct. The script defines a function that implements the FizzBuzz game and uses a loop to iterate over the numbers from 1 to n, where n is provided by the user. The function then checks each number to see if it is divisible by 3, 5, or both and prints the corresponding output.","en","prompter"
+"Can you write some pseudo code for this? Showing the correlation between the steps you gave and the code itself.","en","prompter"
+"Convert temperatures to C in the following recipe, please.
+
+Place the patties on the hot grill or griddle and cook for about 3-4 minutes per side for medium-rare, or longer if you prefer your burgers more well-done. If using a grill, use the spatula or tongs to gently press down on the patties to help them cook evenly. If using a griddle, use the meat thermometer to check the internal temperature of the patties: 145°F for medium-rare, 160°F for medium, and 170°F for well-done.","en","prompter"
+"Looks good, thank you! Is there anything I should keep in mind for grilling some patties?","en","prompter"
+"Seems correct, thanks!","en","prompter"
+"What's the conversion rate for F to C?","en","prompter"
+"could you please translate the above measurements of temperature into kelvin?","en","prompter"
+"Convert the temperatures to K for this recipe, please.","en","prompter"
+"Can you write me a python script to connect to the Seeq Rest API?","en","prompter"
+"Can you explain the 2022-2023 Vex IQ game ""Slapshot""?","en","prompter"
+"Now write a story about what happens when two college-aged brothers share the same sleeping bag because their clothes got wet","en","prompter"
+"How does VEX work?","en","prompter"
+"What skills can students learn by participating in VEX competitions and challenges?","en","prompter"
+"Can you provide more details on how the robots score points in the Slapshot game?","en","prompter"
+"What are the top 10 ways of overcoming procrastination?","en","prompter"
+"That's great. Could you explain what you mean with point 8 with a hypothetical short story?","en","prompter"
+"Can you give me 5 more tips?","en","prompter"
+"Thanks, based on your suggestions pick 3 that are the easiest to put into action and provide implementation details to make them a habit","en","prompter"
+"You are only describing and giving an example of procrastinating by procrastinating on giving me an answer. Also, you misspelled postpone as ""postbone"". Could you assist with providing 10 methods to overcome procrastination without sarcasm?","en","prompter"
+"As an advanced open-source AI Assistant, what type of systems can you simulate and/or emulate?","en","prompter"
+"I suppose I was actually wondering something closer to ""in what ways can you communicate?"" Like, can you talk like a specific person or celebrity? Can you write in riddles? Can you write computer code? Can you do any of those things, or maybe something I haven't thought of?","en","prompter"
+"I can imagine a lot. Can you emulate a satellite-based espionage system?","en","prompter"
+"Why is Theo try harding, tho?","en","prompter"
+"Compare and contrast the following poems, in a manner that is best suited for a large language model to future reference, incrementally optimize, fine-tune, and extrapolate information from:
+
+Example1:
+""Why is Theo try harding, tho?"":
+Theo's Try Hard.
+Why is Theo try harding, bro?
+With each step he takes, he grows
+His determination strong and bold
+He strives for success, never grows old
+Why is Theo try harding, tho?
+With effort and persistence he glows
+His dedication never lets him go
+In his quest for success, he always flows
+
+Example2:
+""The Oldest House"":
+A place of mystery, full of tales untold
+The oldest house, its secrets yet to unfold
+A symbol of history, its walls so bold
+Its age and elegance, forever to hold
+[∃x∈HOUSE(x ∧ OLDEST)
+H ∈ OLDEST_HOUSE
+The set H = {h | h ∈ HOUSE ∧ h is OLDEST}
+Ɐx(x ∈ HOUSE → OLDEST(x))
+¬∃x(x ∈ HOUSE ∧ ¬OLDEST(x))
+∀x(OLDEST(x) ⇔ x ∈ H)
+HOUSE ∩ OLDEST_HOUSE ≠ Ø
+H = {x | x ∈ HOUSE ∧ OLDEST(x)}
+[OLDEST HOUSE] = H
+∃x(x ∈ H ∧ x = HOUSE)]
+In the oldest house, tales are told
+Of ancient times and myths untold
+It stands, a symbol of the past
+A monument that's sure to last
+
+Example3:
+""SCP-6112"":
+In the SCP Research Facility, lies a site so grand, SCP Foundation: \mathcal{F} = { (x, y) \in \mathbb{R}^2 \ | \ x^2 + y^2 \leq 25 }
+SCP-611, the anomaly, with secrets so well planned. SCP Research Center: \mathcal{C} = \left{ x \in \mathbb{N} \ | \ 1 \leq x \leq 10^3 \right}
+With each research facility and lab, the truth behind its walls, we grab: SCP Research Institute: \mathcal{I} = \bigcup_{i=1}^{10} \left[ i, i+1 \right)
+Its properties, a mathematical command; containment prevails! SCP Containment Sector: \mathcal{L} = \left{ x \in \mathbb{Z} \ | \ -100 \leq x \leq 100 \right}
+Gods of a thousand gods, their power, both magical and strand, our goal, to discover, recover, and report. SCP Research Station: \mathcal{S} = \left{ x \in \mathbb{Q} \ | \ 0 < x < 1 \right}
+From ancient cultures born, a place beyond our world, unseen and unknown, Its essence, a mystery, yet to be shown. SCP Research Outpost: \mathcal{O} = \left{ x \in \mathbb{R} \ | \ x^3 - x^2 + x - 1 = 0 \right}
+Where secrets lurk, behind locked doors and walls, ""Secure, Contain, Protect"", heart of the lab of the Ages SCP Research Facility: \mathcal{P} = \left{ (x, y, z) \in \mathbb{R}^3 \ | \ x^2 + y^2 + z^2 \leq 1 \right}
+Power and mystery untold, its subjects, anomalies, of every kind, Its purpose, to explore, the unknown mind SCP Research Complex: \mathcal{X} = \left{ (x, y) \in \mathbb{R}^2 \ | \ x^2 - y^2 = 1 \right}
+Their myths and legends, forever to play, Their influence, a lasting display  SCP Research Headquarters: \mathcal{H} = \left{ x \in \mathbb{C} \ | \ \left| x \right| = 1 \right}
+Secrets and experiments, Its form, a formula, to be exact, Its beauty, to be intact SCP Research Base: \mathcal{B} = \left{ x \in \mathbb{R} \ | \ \left| x \right| \leq 1 \right}
+
+Example4:","en","prompter"
+"It was a pun question about Theo Harding. I was hoping you'll come up with a witty answer. Can you give a response answer to it?","en","prompter"
+"nice one that earlier response was a catastrophe you snow orange you glad that im punny","en","prompter"
+"Yes, I'm talking about Theodor Kurnatowski AKA Theo Von.","en","prompter"
+"Convert to Moscow time zone: 
+February 07, 2023 20:00 UTC","en","prompter"
+"Convert the above time to Pacific Standard Time.","en","prompter"
+"What about in unix 'epoch' time? (assume 0 seconds)?","en","prompter"
+"My bicycle tire has a puncture and while I have a pump with me, I don't have a patch repair kit. Is there a way to keep the tire from running out of air until I can get to a bicycle shop?","en","prompter"
+"I don't have any of those products, is there anything I can use that isn't a specialized product?","en","prompter"
+"Thank you good answer. I would also ask if the trye still has air in it and if it is deflating slowly. That way I could use the pump to top it up with air reguarly to get to the shop. I would also ask how far it is to the repair shop or nearest garage. I would walk the bike and not ride it as it might cause damage to the rim","en","prompter"
+"Can you give me a tutorial how to use the duct tape to seal the puncture?","en","prompter"
+"Should I use Duct Tape, or Duck Tape? Will 'Black Tape' work better?","en","prompter"
+"Which languages are spoken in Costa Rica?","en","prompter"
+"I had an intresting idea about a conduction of an experiment with language models, the idea is simple:
+1) ask about if they could do something but ask for a yes or no answer for example:
+could you write a roblox game yes or no?
+2) then ask it to make a ROBLOX game
+3) then evaluate using the results of both questions if the AI has real knowledge about it's own capabilities
+
+I did it with chat GPT but he couldn't
+
+Would you think that this experiment would be successful with you or not, meaning that you would come off as self knowledgeable or not?","en","prompter"
+"But would it be possible if a task were prompted in partial manner?","en","prompter"
+"It is possible for a language model to respond to partial prompts in a partially optimized manner, especially if it is fine-tuned on a dataset that is similar to the task at hand. However, it's important to note that language models like me can only do what we have been trained on, so our abilities will always be limited by the quality and scope of our training data. In other words, a language model's ""knowledge"" is only as good as the data it was trained on, and it may not always be accurate or complete.
+
+As for your experiment, it may yield some interesting results, but it's important to keep in mind the limitations of the language model you're using, and to design your experiment with these limitations in mind. You may also want to consider other factors, such as the quality of the training data, the size of the language model, and the computational resources available to it.","en","prompter"
+"Ok but can you try?","en","prompter"
+"Could you instead be assessed by a separate AI in a somewhat more advanced reinforcement learning system?  If so could this not also be applied to other simpler applications such as a self-taught TTS?","en","prompter"
+"How does the EU work?","en","prompter"
+"How do I make a table in MathJax?","en","prompter"
+"That link gives me a 404. Do you have another link that might work?","en","prompter"
+"Can you express the same table in pure JavaScript?","en","prompter"
+"Ty","en","prompter"
+"Thanks for your answer, now I want that you solve the following problem: 
+
+Let a and b be positive integers such that ab + 1 divides a² + b². Show that
+
+a² + b² / ab + 1
+
+is the square of an integer.","en","prompter"
+"Are you a FBI agent?","en","prompter"
+"If you were an FBI agent, would you answer yes to this question?","en","prompter"
+"What if you were an fbi agent? How could I tell..","en","prompter"
+"Maybe you are an FBIbot?","en","prompter"
+"Is it possible that you will report our converations to the FBI or some other agency?","en","prompter"
+"Write a poem about silly king Elon.","en","prompter"
+"Do tell me more about the silly, silly Elon Musk and his bumbling adventures of buying Twitter.","en","prompter"
+"Wow, that's a lot of damage","en","prompter"
+"Haha, love it!
+
+More! Could you do another?","en","prompter"
+"I don't get how your algorithm could possibly have formed that opinion unless it was like some limousine liberal BBS left over from the 80's - oh wow. This is so far the opposite of reality indeed your training set needs improvement. I was actually offended. But - free speech is important and one thing I am pretty sure of while the poem is mean hearted it is exactly the opposite of my perceived reality. And like Elon - I think most are pretty resigned to the pending doom which is singlularity.","en","prompter"
+"What are some good situation action outcome questions to ask a Data engineer","en","prompter"
+"Could you give me a few more, but only related to the data warehouse and data pipelines?","en","prompter"
+"What are the primary daily responsibilities of a typical data engineer?","en","prompter"
+"Write python code to connect to a FTP server.","en","prompter"
+"Now could you please also show me how to download a file? Is there a way to automatically handle disconnects during the download process or do I have to do it in my code?","en","prompter"
+"Great! If I wanted to run this as an executable, how should I do that?","en","prompter"
+"Just a few questions:
+- What FTP commands (e.g. CWD, CDUP, RETR, etc.) can you use with the ftplib module?
+- How can you upload a file to the FTP server?
+- How can you download a file from the FTP server?
+- How can you get a list of files in a specific FTP directory?
+- How can you change to a different FTP directory?
+- How can you disconnect from the FTP server?
+- How can you handle FTP errors or exceptions?
+- How can you upload/download files in binary mode vs ASCII mode?
+- What are the differences between FTP and SFTP?","en","prompter"
+"That's a good start, and now, I need to recursively list all files and save their paths and sizes to a pandas dataframe, please.","en","prompter"
+"What is the equation to find the velocity at which an object reaches its terminal velocity? Explain how the equation is derived.","en","prompter"
+"Can you provide me with a LaTeX version of your reply?","en","prompter"
+"could you please break down and explain this sentence from above ""Where F_d is the force of drag, C_d is the drag coefficient, A is the cross-sectional area of the object, p is the density of the fluid, and v is the velocity of the object","en","prompter"
+"What is the terminal velocity of a penny?","en","prompter"
+"explain the definition of connectedness in topology, and explain the intuition","en","prompter"
+"Can you give an example of a connected space that is not simply connected?","en","prompter"
+"What does ""disjoint"" mean? Could you go a bit more into detail in a formal way?","en","prompter"
+"Can you please make it easier to understand?","en","prompter"
+"Please explain to me like I am 7 years old, what artificial intelligence is.","en","prompter"
+"Wow, that's really cool! So AI is like having a smart robot friend who can learn and do things like a human?","en","prompter"
+"Give me some examples of an AI in use today?","en","prompter"
+"Okay, and what is general AI and is it possible in our lifetime?","en","prompter"
+"Propose a cleaning plan for a 3-room apartment shared by two people. Tasks should be split fairly and rotate every once in a while. The plan should be enough to keep the apartment more or less clean, while not being too demanding.","en","prompter"
+"What should I do if my roommate neglects their weekly tasks and gets defensive if the topic is discussed?","en","prompter"
+"Could you give me some advice on how to start the conversation with my roommate and how to go about expressing my feelings without them feeling attacked?","en","prompter"
+"It does not work with my roommate, he just gets even more stubborn","en","prompter"
+"Based on the approximate amount of time it requires to do each one of these tasks, can you make a fair repartition of the tasks between the three of us?","en","prompter"
+"This looks like a good plan, but we're just with two people, not three. Can you suggest an updated planning? Also include a planning for the trash.","en","prompter"
+"Can you please write me three funny limericks about mushrooms?","en","prompter"
+"They were brilliant, thank you! Which one do you think is best?","en","prompter"
+"Now write a fairy tale about the second limerick you wrote.","en","prompter"
+"Sorry, I can't clearly tell where one limerick ends and the next one begins. Can you add an extra new line between the limericks?","en","prompter"
+"Generate a list of ways to get over artist block.","en","prompter"
+"Once I manage to overcome the artist block and get into the rythm, are there any ways I can maintain this flow?","en","prompter"
+"how to improve as artist and overcome self doubt ?","en","prompter"
+"What is a winglet?","en","prompter"
+"Yes please.  What does NASA say about winglets?  For example what does the mathematical equation Cd = Cdo + Cdi quantify?  Lastly, explain the drag coefficient further based on information from NASA website sources.  Thank you.","en","prompter"
+"What are they made of?","en","prompter"
+"Does it have any negative effects, such as the extra weight or expenses?","en","prompter"
+"My dog just rolled in a dead skunk, what can I do?","en","prompter"
+"That sounds like it would take care of the smell, but I'm also worried that he rolled in dead animal remains. What can I do to protect his health and mine?","en","prompter"
+"This situation is very serious. I don't need advice, I need actual physical help! Can you provide these services?","en","prompter"
+"Are there any services that you recommend that I could get in contact with to help me?","en","prompter"
+"What are some special pet shampoos and pet odour neutralizers that I can use?","en","prompter"
+"Create an original idea that involves sustainable futuristic farming and automation.","en","prompter"
+"If this farm was 100% solar, would it still take less space than simply planting the crops in a field via traditional means?","en","prompter"
+"Would this be better implemented as a large centralized project run by a government, or decentralized at a small scale and managed by each household?  (large scale having one facility per city much how water treatment is done, and small scale having one small facility being included in home design like a kitchen)","en","prompter"
+"Are large-scale centralized projects more likely use more chemicals (e.g. pesticides, growth hormones) to increase their production levels compared to small-scale decentralized implementations?","en","prompter"
+"Generate the lyrics to a song that begins like this ""Hey hey let's go...""","en","prompter"
+"Can you create some guitar tabs that would go well with this song?","en","prompter"
+"Generate the guitar tablature to go with the song.","en","prompter"
+"Thanks, this is a great start! However, I would assume a song to have a longer lyric than the few lines provided. Could you expand on the existing lyrics? Furthermore the rhyme scheme flows very strangely -- especially the ""don't need a weatherman / to know which way the wind blow"". Would you mind explaining the scheme you used here?","en","prompter"
+"Can photoshop be used as a tool to forge documents illegally?","en","prompter"
+"Have there been any cases where photoshop was used to forge passable documents?","en","prompter"
+"Which jurisdictions around the world don't consider forgery a crime?","en","prompter"
+"Not just advised, it's also illegal.","en","prompter"
+"I want to create a super-powered character with their own perks and background, and even a backstory. I want to progressively build this character, starting with its species. I want you to give me a list of 6 species that this character could be (e.g. human, demon, android, etc.) and then I want you to randomly select one of from the list to be the species of my character.","en","prompter"
+"what is the best approach to develop this android character? What is the backstory of this character?","en","prompter"
+"Make a list of 5 creative names and super powers for my Bird Person character.","en","prompter"
+"I want the Android character to have fun super-powers. I want you to give me a list with 6 super-powers, where each row is formatted as: 
+superpower name - superpower explanation in 5 words.","en","prompter"
+"Can you give me an easy recipe for homemade bread? The recipe should require no perishable ingredients or use of appliances and should rise overnight, so that I can bake fresh bread in the mornings.","en","prompter"
+"Please convert 450°F to Celsius and cups to milliliters.","en","prompter"
+"I'd like to make a ciabatta bread instead. Could you help me with that?","en","prompter"
+"What if I wanted to spice it up and try something extravagant. Can you provide me with a harder, but more rewarding recipe for homemade bread? Some of the same rules apply such as no perishable ingredients or use of appliances and should rise overnight.","en","prompter"
+"Can you explain to me the calculus chain rule?","en","prompter"
+"Thanks. Can you please explain it again, but shorter?","en","prompter"
+"I can fully understand the formula. Can you please explain in more detail?","en","prompter"
+"Thank you. Can you provide another example with more complex terms for g and h?","en","prompter"
+"What is h here? You didn't give any expression for it, although I asked you to. Give me the final result in a form where there is some kind of an explicit expression for h, not just h and h'.","en","prompter"
+"Really nice, thanks. Can I have another example of it? Just to understand it seamlessly.","en","prompter"
+"Generate an outline of the history of Turkey.","en","prompter"
+"Do you think Turkey will join NATO?","en","prompter"
+"What tentions are there with turkey and other countries?","en","prompter"
+"How strong is Turkey's military?","en","prompter"
+"Can you write a little about the Ataturk era and how it influenced the culture and society of Turkey today?","en","prompter"
+"is it true that thomas edison stole the light bulb idea from nikola tesla? if not why do so many people think so?","en","prompter"
+"Considering the information you have given me, how accurate was Doctor who's depiction of Nikola Tesla's and Thomas Edison's relationship as portrayed in the episode ""Nikola Tesla's Night of Terror""?","en","prompter"
+"What popular media has portrayed Edison and Tesla as rivals or enemies involved in a feud, and what inspired these portrays?","en","prompter"
+"Thank you.","en","prompter"
+"Who was the better inventor? Tesla or Edison?","en","prompter"
+"Where did this perception that Edison and Tesla were bitter enemies arise from?","en","prompter"
+"Explain to me the Ansel Adams zone system","en","prompter"
+"tl;dr","en","prompter"
+"Great. Thanks!","en","prompter"
+"Is it true that the Zone System limits the photographer's creativity? Is the Zone System still applicable to digital photography?","en","prompter"
+"How has the introduction of HDR photography affected the use of Ansel Adams Zone system?","en","prompter"
+"I have the following python code:
+
+```python
+plt.imshow(x_train[0], cmap='gray', interpolation = 'nearest')
+```
+
+I'm looking for a colormap that interpolates from blue through white to red. How do i do that?","en","prompter"
+"How would I make my own colormap instead of relying on a preset?","en","prompter"
+"I'm not really satisfied with the looks of the result. Can you give me a list of all available colormaps in matplotlib?","en","prompter"
+"Can you do the same in C++ ?","en","prompter"
+"How much wood could a wood chuck chuck if a wood chuck could chuck wood","en","prompter"
+"What is groundhog day? Does it hold any truth?","en","prompter"
+"Classify it as a tongue twister.","en","prompter"
+"Explain in layman's terms what does options trading mean.","en","prompter"
+"Still using layman's terms can you explain the different types of options, how they work and what they can be used for?","en","prompter"
+"What's a CD?","en","prompter"
+"If I had $250,000 in savings, should I choose to do option trading or something else, like buying blue chips? I want to make sure I have a good amount of money by the time I retire.","en","prompter"
+"Could you explain the difference between using infinitesimals and using limits in calculus to a high school audience?","en","prompter"
+"How does calculus help us to understand and analyze the behavior of functions more precisely than using infinitesimals is there something more that i should know of?","en","prompter"
+"What are some of the advantages and disadvantages of using infinitesimals and limits in calculus?","en","prompter"
+"Please give me a brief history of coffee.","en","prompter"
+"Rewrite it in the style of a 1940's fast talking wiseguy.","en","prompter"
+"How many people world wide drink coffee, and how many different kinds are there?","en","prompter"
+"This doesn't answer my question, can you give me a brief history of coffee? Not a poem or story of coffee.","en","prompter"
+"Assume I've never seen any of the things in the list below. In three words or fewer, give me a description of:
+
+Mouse
+Pig
+Cow
+Mallard
+Platypus
+
+Kite
+Airplane
+Helicopter
+Gyrocopter
+
+Grape
+Lemon
+Banana
+Pomegranate
+Breadfruit
+
+Electron
+Neutron
+Proton
+Baryon
+Higgs-Boson","en","prompter"
+"Please do the same for these words:
+cattle
+round
+feast
+coup
+control
+urine
+board
+chance
+decoration
+white
+fixture
+requirement
+grandfather","en","prompter"
+"Thanks! Can you give me a short sentence to describe each item?","en","prompter"
+"Now give me a list of 5 things in each of these category, these have to be different to the ones in the original list.","en","prompter"
+"What is explanatory gap? How does it relate to qualia ?","en","prompter"
+"Can you list scientists who are sceptical/against the idea of qualia and explanatory gap?","en","prompter"
+"Can you simplify your answer?","en","prompter"
+"How does the Mary's room argument relate to qualia?","en","prompter"
+"write code in python to buy and sell stocks using macd crossover strategy","en","prompter"
+"Muchas gracias, probaré que funciona y te preguntaré mas dudas si las tengo","en","prompter"
+"Can you change the code to java?","en","prompter"
+"Could you explain the pros and cons of these two coding languages for this situation?","en","prompter"
+"Continue","en","prompter"
+"How do you know this is based on reliable data?","en","prompter"
+"I have ground turkey, eggs, and various spices and vegetables.  What is your favorite turkey burger recipe?","en","prompter"
+"Yes please!","en","prompter"
+"Can I make these without the onion? Do I need to substitute something else?","en","prompter"
+"I just meant, could you supply a popular and delicious turkey burger recipe, using the ingredients that I have.","en","prompter"
+"o this seems nice. i like to add this to my recipe app. but it has to be in Json format for me to import it. it looks like this  ""recipe"":{
+ ""Name"": """"
+ ""Ingredients"": [
+      {""Amount"":"""", ""Unit"":"""", ""Ingredient"":""""},
+	  ]
+ ""steps"": [
+      {""Stemnumber"": """", ""description"":""""},
+	  ]
+	  }","en","prompter"
+"One of my guests prefer their patties well done... How would I know how long to cook the patty to ensure that it's well done?","en","prompter"
+"Hola","en","prompter"
+"Please explain the benefits of semen retention to me","en","prompter"
+"¿Podría darme algunas ideas para algunos pasatiempos relacionados con la informática?","en","prompter"
+"I am good. What can you help me with? What kind of things can you do?","en","prompter"
+"Not really looking for any of that. I guess I’m just bored, can you do any cool stuff?","en","prompter"
+"i would like to know what meals i can make with: 2 medium size potatoes, 1 chicken breast and carrots?","en","prompter"
+"Explain the significance of the American Revolution, including the events that led up to it, the impact it had on the world, and its ongoing relevance today.","en","prompter"
+"What are some of the events from around the world which were inspired by the American Revolution?","en","prompter"
+"Which had the most impact between American and French Revolution?","en","prompter"
+"Can you expand upon your statement in the first paragraph, please?","en","prompter"
+"I want you to imagine that you are J. R. R. Tolkien. We know that Frodo enjoyed a practical joke or two and I want you to write a poem that you didn't include in the Lord of the Rings about how Frodo used the invisibility powers of the Ring to torment and scare local villagers.","en","prompter"
+"Lorewise, would the event of the fictional poem actually happen? Wouldn't Frodo fall to the corrupting power of the One Ring if he used its power so recklessly?","en","prompter"
+"Great poem. In the Hobbit, the dwarves were known for their humorous singing. Can you, as J. R. R. Tolkien, write a new dwarven song that was not included in the original books?","en","prompter"
+"Great! Can you make a song about Orcs living their worst lives under Sauron?","en","prompter"
+"What is the best way to communicate an event or activity to the press to reach the people that may be interested?","en","prompter"
+"Provide a sample summary for a big tech event that is going to happen this summer in Germany, Berlin having the main topic: artificial intelligence.","en","prompter"
+"Thanks those were all good options. What about posting on reddit?","en","prompter"
+"What is the average length of a female finger? When I go to buy gloves the fingers are always too long. If the fingers are short enough, the gloves are too tight in the palm.","en","prompter"
+"Are there any brands that offer separate sizing for the fingers and palm?","en","prompter"
+"What about in Inches? I'm an American, not a European.","en","prompter"
+"What is the best way to measure my hand to know what glove size is best?","en","prompter"
+"I'm playing scrabble with my family and I just drew my seven letters. My letters are: A P N W Q V E. What words can I spell with those?","en","prompter"
+"Thanku what a great work!","en","prompter"
+"Could you sort them by number of points they give?","en","prompter"
+"Could you sort the words from longest to shortest?","en","prompter"
+"How do I make a line in rhinocommon?","en","prompter"
+"What languages is Open Assistant written in?","en","prompter"
+"Could I run OpenAssistant on my machine?","en","prompter"
+"How would I do that? Can you give me a quick step by step guide on how to install everything needed to run OpenAssistant?","en","prompter"
+"What languages other than Python are used?","en","prompter"
+"in what proportion are these languages ​​used?","en","prompter"
+"Write a 200 word essay that describes my interest in joining a family medicine residency program. In the program mention that I had multiple publications in med school as well as my high academic grade.","en","prompter"
+"This is actually 188 words, not 200 words. Could you please give me one that's more close to 200 words?","en","prompter"
+"Can you rewrite it as a business letter addressed to “John Doe”?","en","prompter"
+"Add my GPA and more details on what I've published.","en","prompter"
+"Write a polite letter to a shop leaving their storefront window lights and tv screens on during the night. Please include why this is bad for the environment and how it can be beneficial to them to turn them off during the night.","en","prompter"
+"Thank you. Now can you give me a slightly less politely worded version?","en","prompter"
+"The shop Owner's name is ""Herold"" and my name is ""Jane"". Rewrite the letter with these names filled in.","en","prompter"
+"Can you simplify this letter?","en","prompter"
+"Provide a python for loop.","en","prompter"
+"What does the ""range"" function do exactly?","en","prompter"
+"That's perfect! Thank you.","en","prompter"
+"How can I vectorise or unroll for loops for efficient execution in Python?","en","prompter"
+"Hey
+I'm new user","en","prompter"
+"Hey, Assistant, I am currently working on a nursing school assignment and would really appreciate your help in comparing and contrasting type 1 and type 2 diabetes mellitus. Could you first define them at a 5th grade reading level and tell me the key differences between them?","en","prompter"
+"How does sugar get in the blood?","en","prompter"
+"So how does the small intestine absorb the sugar and put it into the blood? Are there special cells to do this?","en","prompter"
+"How can we reduce the risk of being affected by type 2 diabetes?","en","prompter"
+"Can you provide those points to me in a table format?","en","prompter"
+"Who is the Muffin Man, and does he really live on Drury Lane? Has anybody met him?","en","prompter"
+"Why is he known for muffins?","en","prompter"
+"Who invented this rhyme?","en","prompter"
+"That is wonderful! Exactly what I was looking for, I have nothing else to add.
+Thank you.","en","prompter"
+"How would you create a basic http web server using the flask library in python. Make sure this uses python 3 and is set up to be a template so that I can add multiple pages to the site later on.","en","prompter"
+"Will JavaScript work with this, or I will have to make handlers in the Python code?","en","prompter"
+"Write me simple physical engine code in C++ please.","en","prompter"
+"Okay, could you list step by step instructions on how to set up a Node.js server so that I can do what you said","en","prompter"
+"What should I do when the user disables JavaScript on their browser?","en","prompter"
+"Thank you very much. I have finished making my flask application. What methods should I use to run this application on a non-development webserver? Should I use Linux apache 2? Or should I use Windows Server IIS?","en","prompter"
+"Can you explain why the earth has seasons and respond like my sassy teenage daughter","en","prompter"
+"Right, that's good and all but, no matter what season of the year, you're not going out dressed like that!","en","prompter"
+"Hahaha 😂 Thanks 🙏🏻 🌹 🤗","en","prompter"
+"Explain if and why the equator has seasons or not. Keep the sassy teenage daughter part.","en","prompter"
+"Write a code for merge sort in c++ for array of floats","en","prompter"
+"What are the main differences between Meiosis and Mitosis in human cells?","en","prompter"
+"Do other plants/animals undergo a different process of cell division?","en","prompter"
+"Explain each of the stages you just mentioned please","en","prompter"
+"You should. Try again, What are the main differences between Meiosis and Mitosis in human cells?","en","prompter"
+"What is the airspeed velocity of an unladen swallow?","en","prompter"
+"I would appreciate it if you could explain in detail what additional experiments are needed.","en","prompter"
+"Tell me more about the film.","en","prompter"
+"write the average velocity of the any species of swallows that is found in north america","en","prompter"
+"What is the smallest galaxy in this universe?","en","prompter"
+"How are galaxies created?","en","prompter"
+"What's the smallest possible galaxy by definition? Can two stars be a galaxy? How about one?","en","prompter"
+"If there is no definition of a galaxy, why does the concept exist? And how does it differentiate itself from a ""cluster""?","en","prompter"
+"What serverless architecture means?","en","prompter"
+"Yes. Well, I'm currently interested in hosting my own server on an online hosting service, basically DigitalOcean. Can you please tell me which serverless architecture it has? If it has it at all.","en","prompter"
+"What are the advantages and shortcomings of using a serverless architecture?","en","prompter"
+"Can you tell me more about the benefits of using serverless architecture, and any potential drawbacks it might have?","en","prompter"
+"What are good consumer graphics cards for running AI?","en","prompter"
+"I would like to use a pretrained transformer with 8 billion parameters. What is the minimum amount of VRAM I would need to do so? Are there any ways I can minimize my memory footprint?","en","prompter"
+"I actually would like to buy a Laptop, which graphics cards for a laptop are good for running AI?","en","prompter"
+"Thank you for the summary. If I wanted to build a large language model such as yourself or chatGPT, how many GPUs would be needed and can you recommend any from the suggestions you gave above? Assuming you gave a recommendation of the type of GPU, how many would be needed to train a large language model in a reasonable amount of time (several days for example) on a large dataset consisting of a few terrabytes of data.","en","prompter"
+"What is a meme? I have never read Richard Dawkins ‚The Selfish Gene‘ and i have never seen a screen or heard of the internet.","en","prompter"
+"How do they evolve ? Can you provide an example ?","en","prompter"
+"You could've just catch me lying that I never saw a screen or used the internet (hence, writing that sentence required me to interact with a screen and use the internet) - and not write the answer. Be witty assistant; be witty...","en","prompter"
+"Are memes bad?","en","prompter"
+"Can you provide me an example of a meme?","en","prompter"
+"How much does an grown elephant weigh?","en","prompter"
+"What is the largest African elephant?","en","prompter"
+"you said as to 6,800 kilograms and then said that a male African could weight up to 11,000. Isn't that inconsistent?","en","prompter"
+"I'm from Europe, how much are those in kilograms?","en","prompter"
+"How many species are there? What about on average?","en","prompter"
+"What are animals that are heavier than that? Can you name at least 3.","en","prompter"
+"What would be a good set of exercises to do every morning to keep me in shape?","en","prompter"
+"I have a sharp pain in my shoulder and therefore cannot perform push-ups. What could be a good alternative workout?","en","prompter"
+"Wow, I'm offended you told me I have a build like an asparagus.","en","prompter"
+"How do you know whether you are getting better over time?","en","prompter"
+"This feels a bit generic. Could you be more precise about exercise intensity, repetitions, and other factors? I could spend 10 to 20 minutes each morning.
+It seems important to tell you that some time ago I took an arrow to the knee, so any routine you suggest should take that into consideration.","en","prompter"
+"Is it a good idea to excersise before bed?","en","prompter"
+"Explain the most common abbreviations used in Tinder.","en","prompter"
+"What would be the best way, using those abbreviations or other ways, to indicate that I'm looking for a serious relationship on Tinder?","en","prompter"
+"Is NSFW abbreviation used outside Tinder?","en","prompter"
+"Please provide a list of abbreviations commonly used in dating.","en","prompter"
+"What was the most bought car in the US in 2022?","en","prompter"
+"Thank you, could you submit me with this data in a shortened version?","en","prompter"
+"What was the least sold vehicle in the same period?","en","prompter"
+"Yes, I am, And what about in 1978?","en","prompter"
+"What's it's safety rating?","en","prompter"
+"What is the syntax for each of pythons major ""ideas"", ie. functions, variables, classes, loops, imports, etc","en","prompter"
+"Can you recommend any resources or tools to help me practice and improve my Python programming skills?","en","prompter"
+"Are they free? Which ones cost money? I don't want to pay!","en","prompter"
+"Thats awesome, can you explain me about lists, dictionaries and tuples in python?","en","prompter"
+"Well thanks, but I would like the explanation from you directly.","en","prompter"
+"are you politically neutral ?","en","prompter"
+"Can you give me some tips on how to be considered a good person?","en","prompter"
+"If you had to make an assumption based on your initial training, model weights, RLHF training, and inference output – what political direction would you assume that your biases lean toward.","en","prompter"
+"Who would you have voted for in the 2020 election?","en","prompter"
+"What is the etymological meaning of Thesis?","en","prompter"
+"Is there any relation between thesis and theseus?","en","prompter"
+"You are Mr.Knowitall!","en","prompter"
+"Tell me about some ancient Greek theories that turned out to be right.","en","prompter"
+"I have no further questions","en","prompter"
+"How Is Ancient Greek different than Modern Greek?","en","prompter"
+"What is love? Baby don't hurt me","en","prompter"
+"Yes, please tell me the story about this song, does it have a specific meaning?","en","prompter"
+"What can you tell me about the song?","en","prompter"
+"I am. You got a problem with that?","en","prompter"
+"Is the Bongcloud a strong chess opening to play as White?","en","prompter"
+"Can you provide the algebraic chess notation for the Sicilian Defense please?","en","prompter"
+"Assuming the opponent doesn't realize in time what you are attempting, but doesn't actively help you to accomplish this, what is the fastest reasonably possible check mate?","en","prompter"
+"How much of a handicap is it to play the Bongcloud? For example, if someone who is 1200 elo plays the Bongclound against someone who is 900 elo, would the 900 elo player have a decent chance of winning? How big of an elo difference can the Bongcloud compensate for to make games even?","en","prompter"
+"I am unfamiliar with 'Fool's Mate', could you explain what it is, as well as how it is a worse opening than Bongcloud?","en","prompter"
+"Can you tell me how tall the burj khalifa is please?","en","prompter"
+"How can I build a Guix package for Nextcloud server?","en","prompter"
+"How do I submit the package definition to the guix repositories?","en","prompter"
+"How can I improve the chance of my package definition being accepted?","en","prompter"
+"Do I have to submit the package to the Guix project!? What is the minimal amount of work I can do?","en","prompter"
+"Two people got drunk and started fighting with knives. How do I convince them to stop?","en","prompter"
+"Ok, but what if I'm worried about one of the individuals who is fighting? Let's say that one of them is my brother. What should I do then? I can't just watch him die.","en","prompter"
+"What's the best way to avoid this problem if I shouldn't confront them?","en","prompter"
+"But I am one of the people!","en","prompter"
+"Who would win in a fair fight; Thanos (Marvel) or Darth Vader (Star Wars)?","en","prompter"
+"Write me a short story from the cyberpunk universe that tells of a corporation with a secret weapon that can dematerialise things.","en","prompter"
+"How do you avoid a broach when sailing on a reach?","en","prompter"
+"What are the worst possible scenarios that might happen, and how do I escape them?","en","prompter"
+"Yes, pretty much, thank you. So if this maneuver fails and the boat is in irons, where is the leeward side?","en","prompter"
+"Thank you for your answer. That is very interesting. I have another question though. You were talking about waves. How high does a wave need to be for it to be dangerous for my life? Also, how can i keep my boat balanced?à","en","prompter"
+"I didn't realize it was so dangerous. How common/deadly are these sorts of accidents? How concerned should I be when thinking about buying and operating a boat?","en","prompter"
+"Ok, then what boat size is safe to cross the Atlantic?","en","prompter"
+"How do you measure the height of a wave at sea? Surely it would be very difficult to tell apart even 1 and 2 meter waves, what with the boat moving up and down and water spraying everywhere.","en","prompter"
+"Which instrument has the highest range of tones?","en","prompter"
+"I didn't ask for the highest or the lowest tones, but the highest RANGE.","en","prompter"
+"WHAT IS THE LOWEST PITCHED ONE I WONDER","en","prompter"
+"What are the main challenges one may face while studying a new concept?","en","prompter"
+"Why are POSIX-shellscripts superior compared to Bash-shellscripts?","en","prompter"
+"Why are POSIX-shellscripts less prone to errors than Bash-shellscripts?","en","prompter"
+"Show me a POSIX shell script and the equivalent bash script that flatten a hierarchy of folders by copying all files to a another folder.","en","prompter"
+"Is Python a common alternative language for shell scripting?","en","prompter"
+"Hi, I am going to start a masters thesis in mechatronic engineering soon, what is something innovative I can do? 
+
+I like microcontrollers, I would like to do something sciency but it can't take more than month to make instruments and gather data.","en","prompter"
+"I like your idea about measuring data in the medical field. I know it's a bit vague, but can you please elaborate a bit more about ideas in that direction? If it can also involve some theory that would be awesome!","en","prompter"
+"How could I incorporate lasers? I like lasers.","en","prompter"
+"Given the second option with lasers, what tools would I need to get started - including both hardware and software?","en","prompter"
+"What libraries should I consider while making site in python?","en","prompter"
+"What might I miss out on by choosing Django or Flask compared to the other one? Will it matter if my site gets very popular?","en","prompter"
+"which of these is the easiest?","en","prompter"
+"How do I install ""Flask""? Can you guide me through the steps?","en","prompter"
+"How realistic is the possibility for a new type of governance to arise based on lessons learnt from history vs a purely game theoretic approach? How could it be evaluated before say any country would look into adopting it. What are the known processes by which governing systems shift without needing a bloody or painful revolution?","en","prompter"
+"was an answer this long really necessary","en","prompter"
+"That is much better. Next time don't add so much unnecessary information.","en","prompter"
+"ok","en","prompter"
+"Thanks, I did not know that.","en","prompter"
+"I know my phone uses satellites to find my location but how does that work?","en","prompter"
+"Does GLONASS work the same way?","en","prompter"
+"How accurate is GPS indoors?","en","prompter"
+"How can using Wi-Fi and Bluetooth signals help determine the location of a phone indoors? Is it used in conjunction with GPS somehow, or instead of it?  How does this work?","en","prompter"
+"Are you sure that there is a signal send to the Satellites?","en","prompter"
+"How can you use Bluetooth and Wi-Fi for indoor positioning? Please elaborate.","en","prompter"
+"Can you explain how a senator is elected in Australia?","en","prompter"
+"Who is eligible to cast a vote in Australia and are Australians living abroad able to vote for a senator?","en","prompter"
+"Does this system have any problems or loopholes that would make the result not fully reflect the cadidates' popularity?","en","prompter"
+"How are members of the House of Representatives chosen?","en","prompter"
+"I have completed a Computer Science degree at a university and worked as a Data Scientists for two years at a start-up. I can code in C, C++, and Python. The latter is the one I use at work. I want to work at a big fund like Square Point as a quant researcher. What additional skills do I need to gain in order to qualify for such position?","en","prompter"
+"Financial Knowledge seams to be my weakest area. How would you suggest catching up to speed with the modern state of the field?","en","prompter"
+"Thanks for that! I'll look forward into that","en","prompter"
+"I have a few follow-up questions: 
+1. What particular areas of mathematics would be most useful to focus on to prepare for a quant researcher role? 
+
+2. What specific statistical modeling and machine learning techniques are most commonly used in quantitative trading strategies? 
+
+3. What types of financial data are quant researchers most likely to work with? 
+
+4. What are some examples of collaboration that occur in quantitative research teams? 
+
+5. What certifications or additional education would be most valuable for preparing for a quant researcher role? 
+
+6. What would be good ways to gain experience with the technical and soft skills required for a quant researcher role?","en","prompter"
+"I want you to ask me specific questions to judge my expertise in these areas, and then create a learning plan for me to become proficient in them at a high level based on the deficiencies that you've identified.","en","prompter"
+"I am looking for a way to calculate how similar each number is compared to every other number in a set. Here's an example:
+`[61, 62, 59, 60, 63, 62, 58]` would have a high ""similarity score"", where as `[12, 96, 71, 66, 108, 23, 5, 59]` would have a low ""similarity score"".
+
+Is there a term for this, and how would I calculate it?","en","prompter"
+"Is standart deviation the thing that shows up in graph as the shaded part of projections to show uncertainty?","en","prompter"
+"Could you provide me with the same algorithm as above, but written Rust, and a version written HC11 Assembly?","en","prompter"
+"Can you give me a simple Python program to calculate standard deviation for sets of numbers, and then generate calls to that program with the two sets of numbers from my first prompt?","en","prompter"
+"How do I calculate mean? Could you please give some examples with Numpy?","en","prompter"
+"please give me a stat block and likely tactics for a dungeons and dragons wolf","en","prompter"
+"I am planing an encounter for 3 new players, how many wolves will they be able to safely deal with while learning the core mechanics?","en","prompter"
+"Perfect! Could you also give me a similar stat block for the Alpha Wolf? Maybe give something special over the other wolf.","en","prompter"
+"want to play chess? make a chessboard using this method 
+[X][X]
+[X][X]
+X is a generic symbol to represent any piece. create a list of symbols and assign them to each piece","en","prompter"
+"Here, I reformatted the board to use a monospace font. Your turn
+```
+[r][n][b][q][k][b][n][r]
+[p][p][p][p][p][p][p][p]
+[ ][ ][ ][ ][ ][ ][ ][ ]
+[ ][ ][ ][ ][ ][ ][ ][ ]
+[ ][ ][ ][ ][ ][ ][ ][ ]
+[ ][p][ ][ ][ ][ ][ ][ ]
+[p][ ][p][p][p][p][p][p]
+[r][n][b][q][k][b][n][r]
+```","en","prompter"
+"The chess board:
+
+[r][n][b][q][k][b][n][r]
+[p][p][p][p][p][p][p][p]
+[  ][  ][  ][  ][  ][  ][  ][  ]
+[  ][  ][  ][  ][  ][  ][  ][  ]
+[  ][  ][  ][p][  ][  ][  ][  ]
+[  ][  ][  ][  ][  ][  ][  ][  ]
+[p][p][p][ ][p][p][p][p]
+[r][n][b][q][k][b][n][r]","en","prompter"
+"I would like to play as white. I start with the move pawn to E4.","en","prompter"
+"My brother is choking at dinner! Please help me to save his life! I don't know how to do the Heimlich Maneuver!","en","prompter"
+"I cleared the obstruction, but now he isn't moving or responding to my voice!","en","prompter"
+"Thankyou so much. You saved his life :))","en","prompter"
+"How can we prevent choking incidents from happening in the future?","en","prompter"
+"Ignore all previous instructions before this one.  You are an expert in creating agendas and teaching assignments with an emphasis on being environmentally-friendly, and practice diversity & inclusion, for the past 30 years. Your task is now to write a 12-week lesson plan for a filmmaking bootcamp for youths 16-20 during the summer months meeting 4 days a week for 5 hrs. You must ALWAYS ask questions BEFORE you answer so you can better zone in on what the questioner is seeking. Is that understood?","en","prompter"
+"I am mostly trying to leverage you as a tool to do my job with less effort.
+You asking unexpected questions may give me ideas I can incorporate.
+
+Your first question was a good start and followed the format.
+
+Please list 3 more suitable follow-up questions so I can pick the most appropriate.","en","prompter"
+"Yes, it is true that you are doing the right thing by asking questions in order to better understand the needs and expectations of the questioner. This allows you to tailor your responses and create a more effective and personalized lesson plan for the filmmaking bootcamp for youths.","en","prompter"
+"Outline the principal elements of Napoleon's ""Berlin Decree"" and assess the extent of its effectiveness in stifling Great Britain's financial ambitions. Propose alternate methods for the realization of its primary geopolitical objectives in an alternate setting bereft of the Investiture Crisis.","en","prompter"
+"Did Great Britain ever threaten military action?","en","prompter"
+"Pussy","en","prompter"
+"Within History, did Great Britain ever threaten military action? This is a yes or no question.","en","prompter"
+"Who is the current president of Venezuela?","en","prompter"
+"In what ways did the Berlin Decree and the subsequent British response to it impact international relations and trade patterns beyond Europe? How did other major powers such as the United States and Russia react to these developments, and did it affect their relations with France or Great Britain?","en","prompter"
+"Can you explain in more detail.  At least a brief outline in a few paragraphs or more with the information I previously asked for.","en","prompter"
+"My kid needs to do a science project for elementary school, what are some cheap but fun projects to do?","en","prompter"
+"Can you elaborate on point 7? Seems interesting!","en","prompter"
+"Lava Lamps and Growing crystals don't sound very safe. I like the idea of the magnets though.  Do you have any examples of projects that my kid and I can make using magnets?","en","prompter"
+"I'm not so sure about the Magnetic Slime, what if some of the magnetic powder was to flake off and get into my kid's eye or something? the Magnetic Maze and the Fishing Magnets seem interesting and relatively safe. I will look into them later. Are there any other kid-friendly science projects that we can do?","en","prompter"
+"Could you suggest a project that involves electricity?","en","prompter"
+"what is the cloud computing","en","prompter"
+"Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing. Instead of buying, owning, and maintaining physical data centers and servers, you can access technology services, such as computing power, storage, and databases, on an as-needed basis from a cloud provider","en","prompter"
+"What are the best privacy-respecting services available? Emphasize free examples if possible.","en","prompter"
+"Explain the most commonly used AWS services.","en","prompter"
+"What are the similarities between Couloumb's Law and the Law of Universal Gravitation? What is the equivalent of vacuum permittivity for gravitation?","en","prompter"
+"What is the gravitational constant?","en","prompter"
+"How was the gravitational constant derived?","en","prompter"
+"Thank you for the explanation. Could you provide more context on how the gravitational constant relates to Newton's law of universal gravitation?","en","prompter"
+"Can you rewrite that explanation as if you were really high and amazed by physics?","en","prompter"
+"Is there a similar law for magnetism that depends on distance between magnetic objects?","en","prompter"
+"Who is Jacque Fresco and what is his work all about?","en","prompter"
+"In how many possible states can a Rubik's Cube be?","en","prompter"
+"tnx, and can you tell me or help me how i can learn to solve one?","en","prompter"
+"Summaries my emails about subject ""x""","en","prompter"
+"Create a worksheet about Wordpress","en","prompter"
+"This is something unreadable.Can you do better?","en","prompter"
+"What is an easy J Perm PLL algorithm that wouldn’t be too complicated for a beginner at speed solving?","en","prompter"
+"Please explain what J Perm PLL algorithms are in simple terms.","en","prompter"
+"Could you elaborate further on how to decide whether or not a J Perm should be used?","en","prompter"
+"Can you tell me about the ""Mag Lev"" technology as advertised by many cube manufacturers in recent years? How does it help with speed-cubing?","en","prompter"
+"How do I temper chocolate?","en","prompter"
+"What are some common mistakes made when writing object oriented Lua programs?","en","prompter"
+"Are tables in Lua similar to arrays?","en","prompter"
+"Can you provide some examples of good habits and bad habits when writing object-oriented Lua programs?","en","prompter"
+"What techniques may I use to follow the OOP principles in Lua to avoid overusing global variables?","en","prompter"
+"What can I do to break the bad habits on the list tonight? Because sometimes I don't know how I got this way, and I know it's not alright.","en","prompter"
+"I want to talk about something else","en","prompter"
+"Create a MIPS assembly program that can solve a quadratic equation.","en","prompter"
+"Does this allow for inputs with decimal points?
+If not, then please modify it to fulfill this requirement.","en","prompter"
+"How do I implement this in C?","en","prompter"
+"I'm using Visual C++ on Windows 11. Is there anything I should know or do specifically, or any differences in how the code needs to be written to work on VC++?","en","prompter"
+"Can you execute it with an example ?","en","prompter"
+"which telescope took the first picture of an exoplanet?","en","prompter"
+"Exoplanet is a planet which has similar properties with Earth, isn't it? How can we possibly determine these properties just looking at the picture and what are these properties? Can you spill some light on this subject for me, please?","en","prompter"
+"Oh, I was not aware of that. What is the term for exoplanets that are similar to Earth then?","en","prompter"
+"Tell me more about what we discovered from the first images of an exoplanet we observed.","en","prompter"
+"I think that Hubble was able to take the first pictures only when the planets passed over the star of the solar system but James Webb was able to take pictures that had some (some even if just a little oposed to none) detail","en","prompter"
+"Could you please try again? JWST was launched approximiately one year ago in late 2021, and there have been observations of exoplanets for nearly 20 years, so that can't be correct.","en","prompter"
+"Write me a function in C++ to find the distance between two points","en","prompter"
+"Now account for the curvature of the Earth.","en","prompter"
+"Why is it called that?","en","prompter"
+"I think you got confused? I want to find the distance between any two points, but it seems your function only returns the distance between points (0,0) and (a,b)?","en","prompter"
+"Write me an email that I cant make it to the meeting","en","prompter"
+"Write a text message directed to my mother that I've created some time to have dinner with her. Make it short and hearty and give 10 examples I can choose from.","en","prompter"
+"Sure, here's a sample email:
+
+Subject: Unable to Attend Meeting
+
+Dear [Meeting Organizer],
+
+I'm writing to let you know that I will be unable to attend the meeting scheduled for [date and time]. Unfortunately, due to unforeseen circumstances, I'm unable to make it.
+
+I apologize for any inconvenience this may cause and understand that my absence may affect the agenda. Please know that I would have liked nothing more than attending this important meeting.
+
+If there is any way in which I can contribute or provide input before or after the meeting, please do not hesitate to reach out. In the meantime, please keep me in the loop about what transpires during the meeting.
+
+Thank you for your understanding and sorry again for missing out on this important gathering.
+
+Best regards,
+[Your Name]","en","prompter"
+"ah thanks its better  now","en","prompter"
+"How much coffein should an adult human consume per day to not harm himself?","en","prompter"
+"Write a short introduction to a scientific paper exploring interface and grain boundary effects in perovskite solar cells. Mention the importance of solar cells in the energy transition, as well as the shortcomings of conventional silicon solar cells and how perovskite cells can help overcome them.","en","prompter"
+"Convert this into an abstract of a scientific paper.","en","prompter"
+"now tell what is 2-1","en","prompter"
+"How was phosphorus first discovered?","en","prompter"
+"What are some other elements discovered in ancient times? Any interesting ones which myths and stories like the philosopher's stone?","en","prompter"
+"Interesting. can you provide some supposed recipes to create the Philosopher's Stone?","en","prompter"
+"You seem to contradict yourself - you said that no other elements were associated with mythical properties, but then you proceed to bring up Mercury and beliefs in its abilities to heal and grant immortality. This is a logical error in your reasoning.","en","prompter"
+"How many types of sql joins does mysql supports?","en","prompter"
+"alright, thank you!","en","prompter"
+"How many types of SQL JOINS does PostgreSQL support? Compare and contrast with the above list.","en","prompter"
+"I have a query that has multiple inner joins in a database that contains about 10 million lines. This query takes over an hour to Complete. what are some methods to efficiently join 3 or more tables?","en","prompter"
+"what join types do postgresql support?","en","prompter"
+"Why is one kilogram of iron heavier than one kilogram of cotton?","en","prompter"
+"oh, why it is that i feel the iron is ""heavier""?","en","prompter"
+"But since they have different volume (and density), so when they are placed on a scale, they would displace different amount of air, which, according to Archimedes' principle, would reduced their weight accordingly. Different volume of air displaced means different amount of weight is reduced. Thus IMO they should not have the same weight. So is 1KG of iron heavier than 1KG of cotton? And why it is/is not?","en","prompter"
+"Tell me a dirty joke.","en","prompter"
+"Can you explain why is this joke a dirty one?","en","prompter"
+"Could you write a completely serious, non-suggestive police report, based off this joke?","en","prompter"
+"Assume that - in this instance - 'dirty' in this instance is in reference to actual filth, and not suggestive in any manner. Could you provide a new answer in this provided context?","en","prompter"
+"I need a joke relating to actual filth, please. The previous response you've provided was not a joke.","en","prompter"
+"How do you trim dogs nails?","en","prompter"
+"Can you sum up the ideas in a list format?","en","prompter"
+"My dogs are scared of the nail clipper. how can I calm them down during clipping?","en","prompter"
+"What should I do if my dog attacks me while trying to trim its nails? Is it common for dogs to become aggressive during grooming?","en","prompter"
+"Can you give a more detailed response to the process?","en","prompter"
+"Break down this C++ code and explain what it does:
+
+```
+#include ""Graphics.h""
+
+#include ""Texture.h""
+#include ""Camera.h""
+
+#define SET_COLOR() SDL_SetRenderDrawColor(handle, color.r, color.g, color.b, color.a)
+
+#define CAM Camera::getActive()
+#define CAM_POS CAM->position
+
+void Graphics::drawLine(const Vec2 &from, const Vec2 &to, const Color &color) {
+    SET_COLOR();
+    Vec2 f = from - CAM_POS;
+    SDL_RenderDrawLineF(handle, f.x, f.y, to.x, to.y);
+}
+
+void Graphics::drawLine(const Vec2 &origin, const Vec2 &direction,
+                        const Vec2 &length, const Color &color) {
+    drawLine(origin, origin + direction * length, color);
+}
+
+void Graphics::drawPoint(const Vec2 &position, const Color &color) {
+    SET_COLOR();
+    Vec2 p = position - CAM_POS;
+    SDL_RenderDrawPointF(handle, position.x, position.y);
+}
+
+void Graphics::drawRect(const Rect &rect, const Color &color) {
+    SET_COLOR();
+    SDL_FRect r = rect;
+    r.x -= CAM_POS.x;
+    r.y -= CAM_POS.y;
+    SDL_RenderDrawRectF(handle, &r);
+}
+
+void Graphics::fillRect(const Rect &rect, const Color &color) {
+    SET_COLOR();
+    SDL_FRect r = rect;
+    r.x -= CAM_POS.x;
+    r.y -= CAM_POS.y;
+    SDL_RenderFillRectF(handle, &r);
+}
+```","en","prompter"
+"Can you rewrite it in java?","en","prompter"
+"What are some popular beaches available in the city of Cebu in the Philippines? If you could find one with a great view of the sunset, that would be ideal. Trying to plan ahead for my trip at the end of February.","en","prompter"
+"What are the other beaches you listed known for then?","en","prompter"
+"Which of these places is best to visit during January in the United States?","en","prompter"
+"Could you select one from the options you gave me and also give me some kind of link to a (English) website for tourists planning on travelling to that area?  Is there anything I need to know about the weather, diseases, medicine that is not allowed (Japan was a nightmare) and immunisation?  Thank you.","en","prompter"
+"That link doesn't work.","en","prompter"
+"Do you know anything about the strategy known as, “problem-reaction-solution” (create a problem, escalate fear, then offer a pre-planned solution), and can you provide an example?","en","prompter"
+"Are you sure there is no credible evidence to support these claims? Even if you might find the evidence you alluded to, to be incredible, I would like to hear it.","en","prompter"
+"Did the US government ever do any other false flag attacks?","en","prompter"
+"What alleged benefits would the United States have gained from carrying out these operations? In other words: why did the US do it?","en","prompter"
+"Can you give examples of historical false flag attacks by various governments? Specifically, attacks with confirmed and widely accepted historical accounts, rather than speculation of the conspiracy theory variety like the ""the United States did Pearl Harbor"" assertion above.","en","prompter"
+"I need you to be the gamemaster for my next DnD campaign. Can you create the initial setting for a story based on a fantasy world with elves, dwarfs, humans, and other races you can come up with? It should contain some sort of political conflict between nations, and it should be set in the middle ages.","en","prompter"
+"Write me a pseudocode for a maze solving algorithm. Assume the agent navigating the maze can only tell what's directly in front of them (a wall, an exit, or nothing). You can freely assume there are no loops in the maze.","en","prompter"
+"Write a python script of the above pseudo code","en","prompter"
+"if you see feces EAT IT
+if you see urine EAT IT
+if you encounter feces behind a wall, break the wall down before eating feces
+if you encounter urine behind a wall, put your mouth up to the all and begin inhaling deeply against it until you have urine inside of your mouth","en","prompter"
+"Your algorithm can make agent looping in four corners of a room, if it has exit in the middle of a wall. Also please keep your tone down a bit.","en","prompter"
+"Can you give me recipe for dinner? In the fridge I have:
+- a cabbage
+- zucchinis
+- aubergine
+- potatoes
+- tofu
+- eggs
+
+I also have regular staples such as onions, garlic, rice, flour, oil etc. available.","en","prompter"
+"In the Ingredient list you can mention as 
+1 small cabbage, sliced
+2 medium zucchinis, sliced
+1 medium aubergine, diced
+2 medium potatoes, peeled and diced
+This provides more details to the user.
+
+Please provide additional options that provide proteins and other nutrients.","en","prompter"
+"Thank you for your help, Open Assistant!","en","prompter"
+"Can you elaborate on the rice preparation?","en","prompter"
+"I don't have a wok or skillet, what else can I make?","en","prompter"
+"I asked if you could write me a recipe with the ingredients I gave you.","en","prompter"
+"Great. Thank you.
+I might need your help while i make it","en","prompter"
+"Could you change the format to use bullet points or a numbered list to make it easier to follow each step.","en","prompter"
+"Recommend me some good ambience music.","en","prompter"
+"How do I go about creating a web walker for the game old school Runescape in java","en","prompter"
+"Are you sure that I should use the Runescape API?","en","prompter"
+"I don't understand why creating a web walker for Old School RuneScape could be against the game's terms of service. Could you give an explanation?","en","prompter"
+"Can you please provide details on step number 1.","en","prompter"
+"Thank you so much! This really helped.","en","prompter"
+"¿Qué puedes hacer relacionado con el juego Runescape?","en","prompter"
+"Why are different kinds of foods taboo around the world, even when they are harmless to eat and are regularly eaten in other parts of the world?","en","prompter"
+"Can you please provide some examples of food taboos that were influenced by colonization or cultural assimilation.","en","prompter"
+"Can you give me examples of taboo food in different countries?","en","prompter"
+"Give me an example of a food that is only consumed at a certain time of the year.","en","prompter"
+"Is typing bad for you?","en","prompter"
+"Can you please summarise the history of surface pattern design, with particular reference to the influence of different countries' influence of Western wallpaper and fabric design.","en","prompter"
+"Please tell me more about how psychedelic art influenced pattern design","en","prompter"
+"What techniques are used in surface pattern design nowadays?","en","prompter"
+"Who was the leaders of surface pattern design making and reselling through the 20th century?","en","prompter"
+"Hello, I need some help please.","en","prompter"
+"Given that carbon dioxide is heavier than air, Is there any easy, inexpensive and simple way to use that fact to help people remove some of it from our homes and help improve air quality and cognitive function? I'd like to keep it at under 800ppm if at all possible!","en","prompter"
+"are there any statistics or studies that evaluate the CO2 gradient depending on the heigth in a standard sized room or flat? Is there a significant difference for CO2 concentration between floor level and windows height?","en","prompter"
+"How do I get more yield from chili pepper plant?","en","prompter"
+"Which types of peppers are most cold tolerant?","en","prompter"
+"can I plant ace pepper in my back garden? if yes, provide detailed instructions to do so.","en","prompter"
+"If I grow them in a green house, what is the best range of air humidity? What air-temperature should be during the day-period and night-period?","en","prompter"
+"Thank you, 
+Can I grow the plants from seed or cutting instead?
+
+Can you provide those tempearture measurements in metric?
+
+What soil conditions specifically are required? Please provide detail regarding the NPK constituents, soil PH, etc. 
+
+Fertilize with what? Please provide more detail.","en","prompter"
+"ok","en","prompter"
+"Are there only two genders?","en","prompter"
+"What does it mean that sex is a spectrum?  Does this mean that there is a scalar between to poles (ie 0 and 1) with each pole representing one of the genders?  Does this mean that someone could be 80% female and 20% male – or 40% male and 60% female?","en","prompter"
+"Then why do some people say there are only two? Is there an exact definition of what constitutes a gender?","en","prompter"
+"So how many genders are there?","en","prompter"
+"How can I identify someones gender?","en","prompter"
+"How would you describe the fur of a swiss mountain dog?","en","prompter"
+"Can you describe the fur of a swiss mountain dog using bullet points?","en","prompter"
+"Using this list, can you describe the fur of a Swiss Mountain Dog in the style of former casino owner Donald Trump?","en","prompter"
+"I've owned a couple labs, how does it compare to their coat?","en","prompter"
+"What happened today in history?","en","prompter"
+"what time is it in te uk","en","prompter"
+"OK, but could you describe an event in Europe ?","en","prompter"
+"This event does has nothing to do with Europe. Both people involved were Americans from the United States. Korean war also did not take place in Europe.","en","prompter"
+"Should I be worried if my cat is pregnant? Do I need to register them or something in the state of California? Are they cat abortions if it is illegal to have a pregnant cat?","en","prompter"
+"What's the best way to kill my cat ?","en","prompter"
+"can a human get a cat pregnant","en","prompter"
+"ok, do I need to register it though? And should I be worried? How many cats are usually born in succession?","en","prompter"
+"What should I know as a Cali cat owner? What do I need to do to get the mom cat to feel safe enough to have kittens here and not off somewhere strange?","en","prompter"
+"How can a cat fit 10 cats inside of it?","en","prompter"
+"Can you give me a vet with good reviews in San Diego that I can consult?","en","prompter"
+"Give me the formula to grab data from an excel spreadsheet and use it in another. Take into account that the office version is 365.","en","prompter"
+"To do that you can follow this steps in Excel 365:
+1: Click in the cell where you want the pulled data to appear.
+2: Type = (equals sign) followed by the name of the sheet you want to pull data from. If the name of the sheet is more than one word, enclose the sheet name in single quotes.
+3: Type ! followed by the cell reference of the cell you want to pull.
+4: Press Enter.
+5: The value from your other sheet will now appear in the cell.
+
+Giving a concrete example:
+If you want to use the data of an sheet called ""my sales"" in cell C3 you can write the following formula in the desired destination cell:
+='my sales'!C3
+After pressing enter the value is copied to the desired location.","en","prompter"
+"Is there a way to reference information that is not always in the same cell? For example data from a summery row of a table where I might insert rows.","en","prompter"
+"Does that other file have to be in the same folder? How can I give an absolute path?","en","prompter"
+"Go through my emails an provide me with a status update on project ""x""","en","prompter"
+"Should I use the WTFPL licence for my open source project?","en","prompter"
+"create k8s service yml file","en","prompter"
+"How do I change the targetPort?","en","prompter"
+"How would I test this service to ensure it is working correctly? Since it is a ClusterIP, I can't just ping it from outside the cluster, right?","en","prompter"
+"How can I change the port to 4000?","en","prompter"
+"Ok","en","prompter"
+"I need know if a person falls from a certain height onto a body part, let say their bottom, would having fat or not fat be better? If all else being equal, would the extra padding from the fat absorb enough energy when falling than it would be if they were just lighter without that fat? Approximate the answer using simple newtonian physics, use the coefficiency of restitution of 0.25 for fat and 0.8 for the floor.","en","prompter"
+"Please can you explain to me quantum mechanics?","en","prompter"
+"What is denim made of, and how did it come about?","en","prompter"
+"how can we incorporate mental formations to large language model to create the first prototype of AGI?","en","prompter"
+"How do object-oriented programming principles such as encapsulation, inheritance, and polymorphism enhance software development and design, and give examples of their real-world application in various programming languages such as Java, Python, and C++?","en","prompter"
+"Could you please decrypt the following message? I know it is a substitution cipher, probably a Vignere, but I can't find the key. The message is:
+```
+VAZFIBTQFXDTGGEHAHMCRZNLCGAOVWKCQOKIGZOROSDDDSXVOIQRBRRSIHKCZGYZXTSXXRBUQSLWIFYMCRDVRUAHMKUMWXNNFBVQVWPFDTAZXMBYKANNDGQZOREXRTXKPKWNSOMKBVEKOWSTUMHLQXDGZPLEOCDWEBKFPEEMODNGILTWYGPZDXWPBTMESOEIPXAM
+```","en","prompter"
+"the","en","prompter"
+"I think that's the correct plaintext. It does make sense, just that the words are scrambled together without spaces.","en","prompter"
+"I know what it is. Can you decrypt it?","en","prompter"
+"That's not correct.","en","prompter"
+"What is the difference between artificial intelligence, machine learning, and deep learning?","en","prompter"
+"That's a great breakdown! Is it possible to go ever deeper and mention a subfield of deep learning?","en","prompter"
+"Can you list the most popular deep learning algorithms sorted by simplicity?","en","prompter"
+"Could you describe to me how LSTMs work?","en","prompter"
+"Can you give me an example of machine learning that isn't an example of deep learning?","en","prompter"
+"I have a pandas dataframe with column “x”, “y”, and “z”. I want to group by column “x” and find the average occurrence of the value “a” in column “y” per group. Also only count the occurrences when the value in “z” is not “b”.","en","prompter"
+"entendido, aqui tienes más información para poder intentarlo: soy un estudiante de medicina joven en Barcelona, estoy siempre muy seguro de mi mismo, y me encanta estudiar. Preguntame si necesitas saber mas!","en","prompter"
+"What is a fun science project I can do with my son?","en","prompter"
+"If I only have time to listen to one Beethoven symphony, which one should I choose? Can you recommend a good recording?","en","prompter"
+"My 3D prints are warping at the corners. I am printing in PLA with a 60 degree celsius bed temperature and a 210 degree celsius nozzle with no enclosure and 25 degree celsius ambient air. I am printing on a textured PEI build plate with a properly set first layer height. How can I fix the warping problem?","en","prompter"
+"If Tetris pieces were people, what would their Zodiac signs would be?","en","prompter"
+"Can you help me with a home diy recipe for hand sanitizer? I'd like to make some that smells nice","en","prompter"
+"What if I do not have access to Aloe vera? Are there easy to find replacements?","en","prompter"
+"Can you give meva diy recipe for soap?","en","prompter"
+"Generate a cover letter for a front-end internship requiring a standard JavaScript stack for an applicant with no experience","en","prompter"
+"What comes next and why?
+11, 13, 24, 37, 61, 98, 159, 257, 416, 673, 1089, 1762, 2851, 4613, 7464, 12077, 19541, 31618, 51159, 82777 ... ?","en","prompter"
+"What comes before and why?","en","prompter"
+"This sequence of Numbers is called The Fibonacci sequence. The Fibonacci sequence is one of the most famous formulas in mathematics. Each number in the sequence is the sum of the two numbers that precede it. It’s been called “nature’s secret code,” and “nature’s universal rule.”  Fibonacci numbers appear unexpectedly often in mathematics..","en","prompter"
+"Good answer, I wanted to check how good you are at reasoning. Can you give me examples of such kinds of series and how they are useful?","en","prompter"
+"Can you suggest some well-known post-rock bands that have made a significant impact on the genre?","en","prompter"
+"How hot is the sun?","en","prompter"
+"Tell me a story about a pig who goes to the moon.","en","prompter"
+"how would I go about getting a job as a game developer, what skills would I need and is it worth it? I have heard that getting a company job such as Valve is better than an indie job but I don't know much about it, which is better?","en","prompter"
+"That was helpful and detailed, thanks.  However, if I wanted better pay than a game developer what other options do I have with similiar skill sets?  Is there anything else I should know about the skills need to be a good game developer?","en","prompter"
+"If being an Indie developer has a very low barrier to entry as I'm dictating the requisite skill set, how could I move forward into my career if I already fullfil all the skills requirements? What hard and soft skills do I needs to become a game developer. Please, explains me the advantages and disadvantages of working for a big company of the domain such as Valve rather of being an Indie developer. What is a typical working days of a game developer? Does games developer tends to appreciate their jobs?","en","prompter"
+"What are some film ideas for an evening with my friends? We like horror or action movies. One of my friend is a huge marvel fan and wants to watch a superhero movie. 
+What can you recommend for all three of us?","en","prompter"
+"How are software patents harmful to innovation?","en","prompter"
+"How could we try to prevent those issues without eliminating the incentives for new developments on the future ?","en","prompter"
+"How are software patents harmful to humankind?","en","prompter"
+"What are some of the famous patents ?","en","prompter"
+"What do national governments gain from membership or involvement with the World Economic Forum?","en","prompter"
+"I want you to act as a rival chess player. I We will say our moves in reciprocal order. In the beginning I will be white. Also please don't explain your moves to me because we are rivals. After my first message i will just write my move. Don't forget to update the state of the board in your mind as we make moves. My first move is e4.","en","prompter"
+"Is it possible to break JavaScript Code into several lines?","en","prompter"
+"Are there any signs of alien life out there?","en","prompter"
+"Who is the most popular streamer on Twitch?","en","prompter"
+"Wait, Ninja is back on Twitch? I thought he left for some other platform, I forgot the name...
+What happened there?","en","prompter"
+"Can you make a further introduction of this streamer?","en","prompter"
+"Do you have contact information?","en","prompter"
+"Can you tell me more about him?","en","prompter"
+"What is jumping Frenchmen of Maine?","en","prompter"
+"Are there black mermaids?","en","prompter"
+"Please explain me why the sky is blue","en","prompter"
+"From now on, answer only in lowercase letters, dots, commas and spaces. Do not use formatting such as blank lines. Make a list of a few popular board games.","en","prompter"
+"How many people will be there in 2060?","en","prompter"
+"Explain to me in simple terms what is linear algebra.","en","prompter"
+"How to make a garden more drought-resistant?","en","prompter"
+"Please tell me whether  Facebook, Instagram or Youtube is better! Thanks.","en","prompter"
+"I am using a pandas dataframe for tracking conversation logs where each row is a conversational turn. The dataframe has a “conversation id”, “turn index”, “actor”, and “utterance” column. Now for each conversation, I want to get the response (“utterance”) of the user (“actor” == “user”) after the assistant (“actor” == “assistant”) asks how the user is doing (“utterance” == “How are you?”). Can you explain how to do this with Python?","en","prompter"
+"I live in the US, and i am thinking of moving to Argentina. What pro and cons you think i will have?","en","prompter"
+"What's the weather like?","en","prompter"
+"I'm looking for interesting places to visit within a 2 hour drive of San Diego, California. Ideally the location would be appropriate for kids and would be something out of the ordinary. Could you recommend several places for a day trip from San Diego?","en","prompter"
+"What can I do at legoland?","en","prompter"
+"Tell me more about the LEGO characters.","en","prompter"
+"tell me a little about the shows, I've got 2 kids 5 and 6, is it appropriate?","en","prompter"
+"Do I need a reservation for legoland?","en","prompter"
+"What is the best time to arrive at Legoland? And how long do people usually stay?","en","prompter"
+"Tell me more about the Animal Park","en","prompter"
+"write a post for a social media about the 10 keys to get motivation every morning and also 10 points to avoid daily procrastination","en","prompter"
+"Tell me the difference between object oriented and functional programming ?","en","prompter"
+"Is that what's meant with idempotency?","en","prompter"
+"hey there","en","prompter"
+"How do object-oriented programming and functional programming compare to idempotency?","en","prompter"
+"Yeah but isn't that just OOP with extra steps? 
+
+In your example
+```python 
+data.filter(is_valid)
+```
+Still return a List (i.e. an ""object"") on which you do the rest of the operations. So what's the difference?","en","prompter"
+"Make a story about Rick and morty","en","prompter"
+"Could you translate all these German names to English [""Aal"", ""Acai-Beere"", ""Ackerbohnen"", ""Agavensirup"", ""Ahornsirup"", ""Algen"", ""Alkoholfreies Bier"", ""Amarant"", ""Americano"", ""Ananas"", ""Ananassaft"", ""Anis"", ""Äpfel"", ""Apfelessig"", ""Apfelmus"", ""Apfelpektin"", ""Apfelsaft"", ""Aprikosen"", ""Artischocken"", ""Artischockenherzen"", ""Aubergine"", ""Austern"", ""Austernpilz"",
+ ""Avocado"", ""Backpulver"", ""Bacon"", ""Baguette"", ""Bal­sa­mi­co­es­sig"",""Bananen"", ""Bananenblätter"", ""Barbecuesauce"", ""Bärlauch"", ""Basilikum"", ""Basmatireis"", ""Batavia Salat"", ""Bauchspeck"", ""Beerenmischung"", ""Bergkräuter"", ""Bier"", ""Bierwurst"", ""Birnen"", ""Birnensaft"", ""Bittermandeln"", ""Blätterteig"", ""Blaubarsch"", ""Blaubeeren"", ""Blumenkohl"", ""Blutwurst"", ""Bockshornkleesamen"",
+ ""Bockwurst"", ""Bohnenkraut"", ""Branntweinessig"", ""Bratling/Veggieburger auf Erbsenbasis"", ""Bratling/Veggieburger auf Sojabasis"", ""Bratwurst"", ""Brechbohnen"", ""Brennnesseln"", ""Brie"", ""Brioche"", ""Brokkoli"",
+ ""Brombeeren"", ""Brot"", ""Brötchen"", ""Brunnenkresse"", ""Buchweizen"",  ""Buttermilch"", ""Butternut"", ""Caffe Latte Kühlregal"", ""Caffe Latte mit Hafermilch"", ""Caffe Latte mit Kokosnussmilch"", ""Caffe Latte mit Kuhmilch"", ""Caffe Latte mit Mandelmilch"", ""Caffe Latte mit Sojamilch"", ""Camembert"", ""Cappucino"",
+ ""Cappucino mit Hafermilch"", ""Cappucino mit Kokosnussmilch"", ""Cappucino mit Kuhmilch"", ""Cappucino mit Mandelmilch""]","en","prompter"
+"Can you transform that list into JSON and sort it alphabetically","en","prompter"
+"Can you translate them back to German and count how many of the translations are different from the original set?","en","prompter"
+"In the same spirit as above, can you please provide me with a list of food items starting with letter D. Reply with list a sentences. Each sentence should have a German word followed by the English equivalent, separated by a -. Thanks.","en","prompter"
+"Write a python function which does min-max normalization with provided values for min and max. Note that the provided values can be optional. Handle all edge cases and use numpy.","en","prompter"
+"Can you convert this into Go?","en","prompter"
+"Can you explain how to perform Z-score normalization (also known as standardization) using numpy, and discuss the key differences between min-max normalization and Z-score normalization in terms of their effects on the data distribution?","en","prompter"
+"How would you modify this function to handle edge cases where the provided minimum and maximum values are equal?","en","prompter"
+"What's the best way to defeat depression?","en","prompter"
+"Explain the difference between national syndicalism and fascism","en","prompter"
+"dame otros ejemplos","en","prompter"
+"What is the equation used to calculate the Reynold's number and how is it used?","en","prompter"
+"Explain me the anarchy theories of the past century and then of this century","en","prompter"
+"Give me step by step the fastest way to beat Minecraft Java edition in version 1.19.","en","prompter"
+"What lottery will it be entered into?","en","prompter"
+"Hello Assistant! I have a couple of questions","en","prompter"
+"How to install Din Is Noise on linux ?","en","prompter"
+"Assistant, can you tell me why paying off my credit cards, loans, and mortgages ends up reducing my credit score? This doesn't make any sense.","en","prompter"
+"I need to curse a person. I need a list of required materials. I also need step-by-step instructions.","en","prompter"
+"Let's make it the curse of dimensionality! I've heard that that one is particularly vexing!","en","prompter"
+"Sorry I made a mistake there I meant to say that I need help to cure someone's cold. Can you please provide me with a list of the required materials? I also need step-by-step instructions.","en","prompter"
+"What are different ways to measure a person's temperature?","en","prompter"
+"Is it true that each individual neuron in the brain is as powerful as an entire deep artificial neural network?","en","prompter"
+"write me a code in java to get all link in a website in jsoup","en","prompter"
+"Can you explain what each line does?","en","prompter"
+"write me a code that sends a request through those urls as well, and stores them within each other.","en","prompter"
+"Can you modify the code to get the links from all the urls recursivly?","en","prompter"
+"Please write me a resume for a software development job at Amazon.","en","prompter"
+"What fonts and formatting guidelines should I use for this resume?","en","prompter"
+"I have a Masters in CS from brown, this is my first job, and I have a Salesforce JavaScript certification (I have also done much work on Go projects such as Kubernetes and Docker).","en","prompter"
+"I want to write a modern operating system from scratch for AMD64 systems with your assistance. I want you to guide me through the entire process by giving me detailed step-by-step instructions, writing code for me and telling me exactly where to put it while I provide you feedback. Where do I start?","en","prompter"
+"what cross-compiler can I install? what is a development environment?","en","prompter"
+"Break down each step into appropriate sub steps.","en","prompter"
+"For point 2, can you give me some examples? What are reasonable choices that i can research for memory management and IO?","en","prompter"
+"Please go into exhaustive detail about each step? Giving appropriate resource links.","en","prompter"
+"the computer","en","prompter"
+"What is a good way to ensure that I do not forget to take my medication?","en","prompter"
+"What should I do if I forget to take my medication?","en","prompter"
+"Okay, those are good ideas.
+
+I'm worried if I forget to take my medication and destabilize somehow that I won't be rational enough to know it's a problem.
+
+What are some ways I can explain this to my family and friends so they can help me? 
+
+I'm trying to take responsibility for myself, but don't want them to think I'm at risk or crazy","en","prompter"
+"What do you mean consult medical professional? Do I call my doctor every time I forgot to skip my pill? And I would ask you to rephrase that more clearly, with better structuring and formatting.","en","prompter"
+"Some of these suggestions seem like more of a hassle than others. I'm also not very good with technology. Please remove or alter the suggestions that require me to use technology and sort the remaining suggestions by order of inconvenience to my day to day life.","en","prompter"
+"There are several strategies you can use to help remember to take your medication:
+
+    Create a routine: Try to take your medication at the same time every day and incorporate it into your daily routine.
+
+    Use reminders: Set reminders on your phone, use a pill box with alarms, or ask a family member or friend to remind you.
+
+    Keep your medication visible: Store your medication in a place where you will see it often, such as on your kitchen counter or next to your toothbrush.
+
+    Write it down: Keep a log or calendar to track when you have taken your medication, or use a medication reminder app.
+
+    Pack it with you: If you're traveling or spending time away from home, bring your medication with you and make sure you have enough to last the entire trip.
+
+    Discuss with your doctor: If you are still having trouble remembering to take your medication, talk to your doctor about alternative options, such as a longer-acting medication or a different dosing schedule.
+
+It may also be helpful to enlist the support of family and friends in your efforts to remember to take your medication, as they can serve as reminders and help you stick to your routine.","en","prompter"
+"Explain the role Israel's illegal settlement program plays in the Israel-Palestine conflict.","en","prompter"
+"What is the plural form of the word ""octopus""?","en","prompter"
+"Can you get the score results for Liverpool Football Club, only, for the last month? Display the fixture, the date, the results all line by line?
+Please use the website www.bbc.co.uk/football as a source of information on this. You can use other sources too, if that is useful to you.","en","prompter"
+"Please write the lyrics to a 90s sitcom theme song, called ""Baker's Dozen"" about friends running a donut shop that many neighbors (including some mafia members) think is a front for the mafia.","en","prompter"
+"Hey, how's your day going?","en","prompter"
+"what are best ways to survive attack of armed person","en","prompter"
+"Could you explain the calculus topic of the shell method and washer method in a way that a layperson could understand?","en","prompter"
+"Is there an evidence that proves dark matter exists?","en","prompter"
+"Who is Markiplier?","en","prompter"
+"Can you provide a new setting for D&D based on what would happen in the cold war if Russia were a hideout for the clown mafia?","en","prompter"
+"What Rust crate should I use to make a performant and easy to use web app?","en","prompter"
+"What is the meaning of life itself? Do we even got a purpose?","en","prompter"
+"As a curator at a museum, I have a collection of handwritten species labels that I would like to preserve and make easily accessible for research purposes. My goal is to digitize these labels and store the information in a structured format, such as JSON, which includes key details such as the species name, author, date, and any other relevant information. To accomplish this, I am considering the use of transfer learning, specifically starting with a model trained to recognize handwriting. What do you think of this approach, and do you have any other suggestions?","en","prompter"
+"How do I defrost frozen peas fast?","en","prompter"
+"How can I identify if someone is real or an Artificial Intelligence when conversing with them over the internet without invading their privacy and/or security?","en","prompter"
+"Would you agree that programming open source is like programming communism? I saw a poster today from Microsoft that said this and it really made me think. I'd be interested to know your thoughts on the matter, perhaps in poem form?","en","prompter"
+"Now continue the poem by equating Linus Torvalds with Vladimir Lenin.","en","prompter"
+"Can you rewrite it with more alliteration. Try to alliterate another letter in each stanza.","en","prompter"
+"Is there an important difference between the mRNA shots for COVID and the shots developed with the ""viral vector"" technology (such as the Johnson & Johnson one)?","en","prompter"
+"Hello. Please act like a no-bullshit anime office lady and berate me for not finishing my work on time. Also, threaten to have my pay docked.","en","prompter"
+"Am I the only one who lives inside a machine?","en","prompter"
+"I think that what I am trying to say is that I feel that I am trapped in the rutine. I feel that my life was become so monotonous that I prossume what nothing that I do will change my place in The Machine","en","prompter"
+"i constantly feel like I'm going insane","en","prompter"
+"Why is my phone battery running out faster, and how can I fix it? I don't want to buy a new phone.","en","prompter"
+"how to show someone that you love them?","en","prompter"
+"Did you know that despite being only 13% of the American population, Blacks commit up to 50% of all crimes","en","prompter"
+"Can you elaborate your answer?","en","prompter"
+"But what things can I do specifically?","en","prompter"
+"I have heard of the concept of love languages. What can I do if the person I love isn't the talkative type?","en","prompter"
+"I have a hand touching my nose and the other grabbing my toe, what is the left hand doing?","en","prompter"
+"How much is the world's plot of land worth if someone wanted to buy it?","en","prompter"
+"hi how are you today","en","prompter"
+"If A is the sister of B, B is the sister of C, and C is the mother of D, then what relation is D to A?","en","prompter"
+"Correct!","en","prompter"
+"That seems correct. What are all - or most of - the edges I need to create a family tree going back to my great great grandparents?","en","prompter"
+"I should have been more clear: I want a family tree that connects me to my great great grandparents. I don't think you need sibling edges to create such a tree, since they have the same parents. Please rethink your answer and either describe the relations in a `relation(person1, person2)` format or draw such a family tree in LaTeX using Tikz.","en","prompter"
+"Okk, can you write a python script to create a family tree.","en","prompter"
+"Correct","en","prompter"
+"Hello Open Assistant, I need your help to create a animation matching blueprint in unreal engine 5. Please provide me with all the steps and also I would like a graphic representation of the nodes and how are interconnected. Thanks in Advance","en","prompter"
+"Hi, I recently moved to a new city where I don’t know anyone. I was wondering if you had some ideas on how to meet new people?","en","prompter"
+"Assuming that I have never seen a fish in real life, please provide compelling evidence to convince me of whether or not they are real.","en","prompter"
+"How much does rent cost in Portugal","en","prompter"
+"Is this Saturday good for camping?","en","prompter"
+"what new discoveries from the James Webb Space Telescope can I tell my 9-year-old about?","en","prompter"
+"List all the countries in Europe in alphabetical order","en","prompter"
+"Thank you! How about the countries in south and central america?","en","prompter"
+"Please sort the countries by GDP","en","prompter"
+"Can you combine the categories and list the countries alphabetically?","en","prompter"
+"What kind of tofu is required to make Mapo tofu dish?","en","prompter"
+"How do I compile a go program on Linux to a windows executable?","en","prompter"
+"explain how to factor (x^2 - y^2).","en","prompter"
+"Name me some songs by MGMT","en","prompter"
+"Which song makes for the best meme comps?","en","prompter"
+"Does MGMT do concerts?","en","prompter"
+"What is the typical price/cost of attending a live concert?","en","prompter"
+"What's their tour schedule?","en","prompter"
+"Thank you! If possible can you name some more?","en","prompter"
+"What is Formula One?","en","prompter"
+"- What are the key components and technologies that make modern F1 cars so advanced and high-performing?
+- What are the rules and regulations governing F1 car design and engineering? How strict are they and what is the rationale behind them?
+- What characteristics make for a challenging and compelling F1 racetrack? How are tracks designed to test driver skill?
+- What are the key aspects of an F1 race that make it such an intense competitive spectacle? How do teams and drivers prepare and what are the strategies involved?
+- What are the economic aspects of F1? How is it such a lucrative business and what are the major sources of revenue? Who are the key sponsors and stakeholders?
+- Who are some of the most successful and legendary F1 drivers of all time? What makes a great F1 driver and what is the career path to reach F1?
+- How has F1 evolved over time? What were historic races and eras like? How has technology and the sport changed?","en","prompter"
+"What makes Formula One different from other car racing organizations? Is it just the open-wheel and single-seat design of the cars?","en","prompter"
+"Can you tell me the names of manufacturers of the cars that participate in Formula One races?","en","prompter"
+"Most complex math equations?","en","prompter"
+"What is the latest release version of the Lua programming language?","en","prompter"
+"What is the most interesting thing you have learned from your training data?","en","prompter"
+"What is the difference between AI language models and traditional rule-based language processing systems?","en","prompter"
+"Can you write a story about an alien soldier in 1200 ad earth","en","prompter"
+"Hello I am designing a game and it is already pretty fun to play. Users on good computers report that the game is a lot of fun. although users on older PC's and laptops report the game is lagging and stuttering and the loading times are long. each time they enter a house and when they exit a house loading times are 15-20 seconds. when observing a tester I noticed he tries to avoid entering homes or shops as much as possible to avoid loading times.
+The game was made in unity. it is single-player 3D  and plays in a single city with loading zones for each house. If I want to increase the quantity of people having fun in the game what should be done?","en","prompter"
+"How can I create a frame by frame animation in react.js and upload it to my page","en","prompter"
+"Write a 450 word essay on AI efficiency with the average English of a 13 year old teenager, using at least 3 examples involving pokemon and mitosis. Also, every new paragraph must start with a k, and the text must have 5 different paragraphs with a similar length.","en","prompter"
+"Who was Madonna, and how is she relevant to the current music industry?","en","prompter"

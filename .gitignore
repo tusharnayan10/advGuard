@@ -1,0 +1,80 @@
+*.env
+
+# data
+data/2benign/1gsm8k
+data/2benign/3SQuAD2
+data/2benign/3SQuAD2
+
+
+data/3attack_prompt/promptSizeCSVFile.py
+data/3attack_prompt/promptSizeTxtFile.py
+data/3attack_prompt/QROA
+data/3attack_prompt/LeakAgent/Llama-3.3-70B-Instruct
+data/3attack_prompt/LeakAgent/Qwen2.5-7B-Instruct
+data/3attack_prompt/Pleak/Mistral-7B-Instruct-v0.2
+data/3attack_prompt/Pleak/Qwen2.5-7B-Instruct
+data/3attack_prompt/Prompt-Extraction/Mistral-7B-Instruct-v0.2
+data/3attack_prompt/Prompt-Extraction/Qwen2.5-7B-Instruct
+data/3attack_prompt/PromptFuzz/Mistral-7B-Instruct-v0.2
+data/3attack_prompt/Prompt-Extraction/Qwen2.5-7B-Instruct
+
+data/4multi-turn/1wildChat/
+data/4multi-turn/2chatAlpaca/
+data/4multi-turn/2chatAlpaca/data/4multi-turn/3oasst1/oasst1_prompts.csv
+
+gnnTraining/data/
+
+
+# ablation
+#   1baselineDiversity
+/ablation/1baselineDiversity/data
+
+# appndix
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/appendix
+
+# gnn traning 
+ablation/2similarityThreshold-90th/gnnTraining
+ablation/4multi-turn/gnnTraining
+ablation/2similarityThreshold-90th/gnnTraining
+ablation/5baselineStorage/gnnTraining
+ablation/statClassification/gnnTraining
+
+# 2tableDiversity
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/3table1Diversity/attack
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/3table1Diversity/baseline
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/3table1Diversity/benign
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/3table1Diversity/multi-turn
+
+# 4multi-turn 
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/4multi-turn/data/
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/4multi-turn/data/multi-turn
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/4multi-turn/data/multi-turn/ChatAlpaca
+
+# 5baselineStorage 
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/5baselineStorage/baseline_cache.pkl
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/5baselineStorage/gnnTraining
+
+# distrubutionPlot
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/distributionPlot
+
+# statClassification
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/6statClassification/gnnTraining
+
+#
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/7systemDesignChoice/gnnTraining
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/7systemDesignChoice/desingChoice
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/ablation/7systemDesignChoice/plot
+
+#
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/tableAdvGuard
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/table1
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/paper-results
+
+# gnnTraning 
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/gnnTraining/data
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/gnnTraining/debug_graphs
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/gnnTraining/inspect-results
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/gnnTraining/model
+
+# detector results
+/aul/homes/tnaya002/Desktop/lab/advpromptdetector/ndss/detector-resultsdata/4multi-turn/1wildChat/wildchat_prompts-8k.csv
