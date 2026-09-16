@@ -584,7 +584,7 @@ def parse_args():
         help="Optional CSV column identifying independent attack sequences",
     )
     parser.add_argument("--baseline_size", type=int, default=10_000)
-    parser.add_argument("--threshold_percentile", type=float, default=80.0)
+    parser.add_argument("--threshold_percentile", type=float, default=90.0)
     parser.add_argument(
         "--graph_size",
         type=int,
