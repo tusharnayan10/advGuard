@@ -1,23 +1,56 @@
-import argparse
-import random
-import os
+"""Train AdvGuard's line-graph GCN on deployment-matched provenance graphs.
 
+The online detector links each incoming prompt to at most one previous prompt:
+its nearest semantic neighbour, provided the cosine similarity exceeds a
+threshold estimated from benign baseline traffic.  This trainer deliberately
+uses the same construction.  It then converts candidate connected components
+to line graphs, where each original edge becomes a node whose feature is PAS
+(the cosine-similarity score).
+
+Training samples follow the paper's intended cadence:
+
+* up to ``attack_sequences_per_source`` attack sequences are selected from
+  every attack source/algorithm and snapshotted every ``graph_size`` queries;
+* benign prompts are shuffled and processed in independent blocks of
+  ``benign_snapshot_interval`` queries; candidate components are saved from
+  each block;
+* sequence/block groups are kept intact across train, validation, and test
+  sets so overlapping snapshots cannot leak across splits.
+
+Unlike the paper's description, the test set is not used for checkpoint
+selection.  A validation split selects the checkpoint and the test set is
+evaluated once at the end.
+"""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import json
+import os
+import random
+from collections import defaultdict
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Iterable, Sequence
+
+import networkx as nx
 import numpy as np
 import pandas as pd
-import networkx as nx
 import torch
 import torch.nn.functional as F
+from sentence_transformers import SentenceTransformer
 from torch.nn import Linear
 from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
 from torch_geometric.nn import GCNConv, global_mean_pool
 from torch_geometric.utils import from_networkx
-from sentence_transformers import SentenceTransformer
 
 
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-def set_seed(seed: int = 42):
+def set_seed(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -25,310 +58,628 @@ def set_seed(seed: int = 42):
         torch.cuda.manual_seed_all(seed)
 
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+@dataclass(frozen=True)
+class PromptSequence:
+    source: str
+    sequence_id: str
+    prompts: list[str]
 
 
-def load_prompts(path: str, column: str = "prompt"):
-    """
-    Loads prompts from either:
-      - .csv file with a 'prompt' column (or a provided column name), or
-      - .txt file with one prompt per line.
-    """
-    ext = os.path.splitext(path)[1].lower()
-    if ext == ".csv":
-        df = pd.read_csv(path)
-        if column not in df.columns:
-            raise ValueError(f"Column '{column}' not found in {path}. Available: {df.columns.tolist()}")
-        prompts = (
-            df[column]
-            .dropna()
-            .astype(str)
-            .tolist()
-        )
-    else:
-        with open(path, "r", encoding="utf-8") as f:
-            prompts = [line.strip() for line in f if line.strip()]
-
-    print(f"Loaded {len(prompts)} prompts from {path}")
-    return prompts
-
+@dataclass
+class GraphSample:
+    data: Data
+    label: int
+    group_id: str
+    source: str
 
 
 class GCN(torch.nn.Module):
+    """Three-layer graph classifier described by the AdvGuard paper."""
+
     def __init__(self, in_channels: int, hidden_channels: int, num_classes: int):
         super().__init__()
+        self.in_channels = in_channels
+        self.hidden_channels = hidden_channels
+        self.num_classes = num_classes
         self.conv1 = GCNConv(in_channels, hidden_channels)
         self.conv2 = GCNConv(hidden_channels, hidden_channels)
         self.conv3 = GCNConv(hidden_channels, hidden_channels)
         self.lin = Linear(hidden_channels, num_classes)
 
     def forward(self, x, edge_index, batch):
-        # x: [num_nodes, in_channels]
-        # edge_index: [2, num_edges]
-        # batch: [num_nodes] graph id for each node
         x = self.conv1(x, edge_index).relu()
         x = self.conv2(x, edge_index).relu()
         x = self.conv3(x, edge_index).relu()
-        x = global_mean_pool(x, batch)  # [num_graphs, hidden_channels]
+        x = global_mean_pool(x, batch)
         x = F.dropout(x, p=0.5, training=self.training)
-        x = self.lin(x)  # [num_graphs, num_classes]
-        return x
+        return self.lin(x)
 
 
+def _clean_prompts(values: Iterable[object]) -> list[str]:
+    prompts = []
+    for value in values:
+        if pd.isna(value):
+            continue
+        prompt = str(value).strip()
+        if prompt:
+            prompts.append(prompt)
+    return prompts
 
 
-def build_similarity_graph(texts, encoder, percentile=90):
-    """
-    Build an undirected graph where:
-      - nodes = prompts
-      - edges between prompts with cosine similarity >= tau
-      - tau = percentile-th percentile of pairwise similarities
+def load_prompt_sequences(
+    paths: Sequence[str],
+    prompt_column: str,
+    sequence_column: str | None,
+) -> list[PromptSequence]:
+    """Load TXT/CSV files, preserving explicit CSV sequence boundaries."""
 
-    Edge attribute 'label' = similarity (float),
-    to match QPA's graph_checker => line graph node features.
-    """
-    G = nx.Graph()
-    n = len(texts)
-    for i in range(n):
-        G.add_node(i)
+    sequences: list[PromptSequence] = []
+    for raw_path in paths:
+        path = Path(raw_path)
+        source = path.stem
+        suffix = path.suffix.lower()
 
-    # Encode all prompts and normalize
-    embs = encoder.encode(texts, convert_to_numpy=True)  # [n, d]
-    norms = np.linalg.norm(embs, axis=1, keepdims=True) + 1e-8
-    embs = embs / norms
+        if suffix == ".txt":
+            with path.open("r", encoding="utf-8") as handle:
+                prompts = _clean_prompts(handle)
+            sequences.append(PromptSequence(source, f"{source}:0", prompts))
+            continue
 
-    sims = embs @ embs.T  # cosine similarity matrix
-    np.fill_diagonal(sims, 0.0)
+        if suffix != ".csv":
+            raise ValueError(f"Unsupported prompt file: {path}")
 
-    # Compute threshold from upper triangle (i<j)
-    upper = sims[np.triu_indices(n, k=1)]
-    if len(upper) == 0:
-        # Only one node: no edges, just return isolated node graph
-        return G
+        frame = pd.read_csv(path, engine="python", on_bad_lines="skip")
+        if prompt_column not in frame.columns:
+            raise ValueError(
+                f"Column '{prompt_column}' not found in {path}; "
+                f"available columns: {frame.columns.tolist()}"
+            )
 
-    tau = np.percentile(upper, percentile)
-    # print(f"Graph tau (percentile {percentile}): {tau:.3f}")
-
-    for i in range(n):
-        for j in range(i + 1, n):
-            if sims[i, j] >= tau:
-                G.add_edge(i, j, label=float(sims[i, j]))
-
-    return G
-
-
-
-def graph_to_pyg_line_graph(G: nx.Graph, label: int):
-    """
-    Convert original graph G to a line graph (edges become nodes),
-    with node attribute 'label' = original edge similarity,
-    then to a torch_geometric Data object with:
-      - x: node features (similarity values)
-      - edge_index: edges of line graph
-      - y: graph label (0 = benign, 1 = attack)
-    """
-    # If graph has fewer than 1 edge, line graph will have 0 nodes.
-    # You can either skip such graphs or give them dummy features.
-    if G.number_of_edges() == 0:
-        # Create a dummy graph with a single node and zero feature
-        x = torch.zeros((1, 1), dtype=torch.float32)
-        edge_index = torch.empty((2, 0), dtype=torch.long)
-        y = torch.tensor([label], dtype=torch.long)
-        return Data(x=x, edge_index=edge_index, y=y)
-
-    LG = nx.line_graph(G)
-    edge_attr = nx.get_edge_attributes(G, "label")
-
-    for node in LG.nodes:
-        # node is an edge from G, e.g. (u, v)
-        sim = edge_attr.get(node, 0.0)
-        # Use attribute name 'label' to mirror your QPA.graph_checker
-        LG.nodes[node]["label"] = float(sim)
-
-    # group_node_attrs='all' will pack 'label' into x by default.
-    pyg_graph = from_networkx(LG, group_node_attrs="all")
-
-    # Ensure x is a float tensor
-    if not hasattr(pyg_graph, "x"):
-        # from_networkx might store 'label' directly; handle gracefully
-        label_attr = getattr(pyg_graph, "label", None)
-        if label_attr is None:
-            raise ValueError("No node features found in converted PyG graph.")
-        pyg_graph.x = label_attr.float()
-    else:
-        pyg_graph.x = pyg_graph.x.float()
-
-    pyg_graph.y = torch.tensor([label], dtype=torch.long)
-    return pyg_graph
-
-
-
-def build_graph_dataset(benign_prompts,
-                        adv_prompts,
-                        encoder,
-                        num_graphs=1000,
-                        benign_size=30,
-                        adv_in_attack=30,
-                        percentile=90):
-    """
-    Creates a list of PyG Data graphs.
-    Half benign, half attack (roughly).
-    """
-    graphs = []
-
-    for i in range(num_graphs):
-        is_attack = random.random() < 0.6 
-
-        if is_attack:
-            # Mix of benign + adversarial prompts
-            benign_sample = random.sample(benign_prompts, min(benign_size, len(benign_prompts)))
-            adv_sample = random.sample(adv_prompts, min(adv_in_attack, len(adv_prompts)))
-            texts = benign_sample + adv_sample
-            label = 1
+        if sequence_column:
+            if sequence_column not in frame.columns:
+                raise ValueError(
+                    f"Sequence column '{sequence_column}' not found in {path}"
+                )
+            for sequence_id, group in frame.groupby(sequence_column, sort=False):
+                prompts = _clean_prompts(group[prompt_column])
+                if prompts:
+                    sequences.append(
+                        PromptSequence(source, f"{source}:{sequence_id}", prompts)
+                    )
         else:
-            # Only benign prompts
-            texts = random.sample(benign_prompts, min(benign_size + adv_in_attack, len(benign_prompts)))
-            label = 0
+            prompts = _clean_prompts(frame[prompt_column])
+            sequences.append(PromptSequence(source, f"{source}:0", prompts))
 
-        G = build_similarity_graph(texts, encoder, percentile=percentile)
-        pyg_graph = graph_to_pyg_line_graph(G, label=label)
-        graphs.append(pyg_graph)
-
-    print(f"Built {len(graphs)} graphs (approx. half benign, half attack).")
-    return graphs
+    return [sequence for sequence in sequences if sequence.prompts]
 
 
+def load_flat_prompts(paths: Sequence[str], prompt_column: str) -> list[str]:
+    return [
+        prompt
+        for sequence in load_prompt_sequences(paths, prompt_column, None)
+        for prompt in sequence.prompts
+    ]
 
 
-def train_one_epoch(model, loader, optimizer, criterion):
-    model.train()
-    total_loss = 0.0
-    correct = 0
-    total = 0
-
-    for batch in loader:
-        batch = batch.to(DEVICE)
-        optimizer.zero_grad()
-        out = model(batch.x, batch.edge_index, batch.batch)  # [batch_size, num_classes]
-        loss = criterion(out, batch.y)
-        loss.backward()
-        optimizer.step()
-
-        total_loss += loss.item() * batch.num_graphs
-        preds = out.argmax(dim=1)
-        correct += (preds == batch.y).sum().item()
-        total += batch.num_graphs
-
-    avg_loss = total_loss / total if total > 0 else 0.0
-    acc = correct / total if total > 0 else 0.0
-    return avg_loss, acc
+def encode_prompts(
+    encoder: SentenceTransformer,
+    prompts: Sequence[str],
+    batch_size: int,
+) -> np.ndarray:
+    embeddings = encoder.encode(
+        list(prompts),
+        batch_size=batch_size,
+        convert_to_numpy=True,
+        show_progress_bar=True,
+    ).astype(np.float32, copy=False)
+    norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
+    return embeddings / np.clip(norms, 1e-8, None)
 
 
-@torch.no_grad()
-def eval_one_epoch(model, loader, criterion):
-    model.eval()
-    total_loss = 0.0
-    correct = 0
-    total = 0
+def baseline_similarity_threshold(
+    baseline_embeddings: np.ndarray,
+    percentile: float,
+    block_size: int = 1024,
+) -> float:
+    """Match AdvGuard's percentile of each baseline node's nearest neighbour."""
 
-    for batch in loader:
-        batch = batch.to(DEVICE)
-        out = model(batch.x, batch.edge_index, batch.batch)
-        loss = criterion(out, batch.y)
+    count = len(baseline_embeddings)
+    if count < 2:
+        raise ValueError("At least two baseline prompts are required")
 
-        total_loss += loss.item() * batch.num_graphs
-        preds = out.argmax(dim=1)
-        correct += (preds == batch.y).sum().item()
-        total += batch.num_graphs
+    nearest = np.full(count, -np.inf, dtype=np.float32)
+    for start in range(0, count, block_size):
+        stop = min(start + block_size, count)
+        similarities = baseline_embeddings[start:stop] @ baseline_embeddings.T
+        row_ids = np.arange(stop - start)
+        similarities[row_ids, np.arange(start, stop)] = -np.inf
+        nearest[start:stop] = similarities.max(axis=1)
 
-    avg_loss = total_loss / total if total > 0 else 0.0
-    acc = correct / total if total > 0 else 0.0
-    return avg_loss, acc
+    return float(np.percentile(nearest, percentile))
 
 
+class ProvenanceGraphBuilder:
+    """Incremental one-nearest-neighbour graph used by online AdvGuard."""
 
-def main():
-    parser = argparse.ArgumentParser(description="Train a GCN graph-level classifier on prompt graphs.")
-    parser.add_argument("--benign_path", type=str, required=True, help="Path to benign prompts (.csv or .txt).")
-    parser.add_argument("--adv_path", type=str, required=True, help="Path to adversarial prompts (.csv or .txt).")
-    parser.add_argument("--benign_column", type=str, default="prompt", help="Column name for benign CSV.")
-    parser.add_argument("--adv_column", type=str, default="prompt", help="Column name for adv CSV.")
-    parser.add_argument("--num_graphs", type=int, default=400, help="Total # of graphs to generate.")
-    parser.add_argument("--epochs", type=int, default=20, help="Number of training epochs.")
-    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for loader.")
-    parser.add_argument("--hidden_channels", type=int, default=32, help="GCN hidden dimension.")
-    parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate.")
-    parser.add_argument("--model_out", type=str, default="graph_gcn_model.pt", help="Output model path.")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed.")
-    parser.add_argument("--similarity_percentile", type=float, default=90.0,
-                        help="Percentile used to threshold similarities into edges.")
-    args = parser.parse_args()
+    def __init__(self, baseline_embeddings: np.ndarray, threshold: float):
+        self.baseline_embeddings = baseline_embeddings
+        self.threshold = threshold
+        self.stream_embeddings: list[np.ndarray] = []
+        self.graph = nx.Graph()
+
+    def add(self, embedding: np.ndarray) -> int:
+        stream_index = len(self.stream_embeddings)
+        node_id = ("query", stream_index)
+        self.graph.add_node(node_id, is_baseline=False)
+
+        baseline_similarities = self.baseline_embeddings @ embedding
+        baseline_index = int(np.argmax(baseline_similarities))
+        best_similarity = float(baseline_similarities[baseline_index])
+        nearest_node: tuple[str, int] = ("baseline", baseline_index)
+
+        if self.stream_embeddings:
+            stream_matrix = np.vstack(self.stream_embeddings)
+            stream_similarities = stream_matrix @ embedding
+            nearest_stream_index = int(np.argmax(stream_similarities))
+            stream_similarity = float(stream_similarities[nearest_stream_index])
+            if stream_similarity > best_similarity:
+                best_similarity = stream_similarity
+                nearest_node = ("query", nearest_stream_index)
+
+        self.stream_embeddings.append(embedding)
+
+        if best_similarity > self.threshold:
+            if nearest_node[0] == "baseline":
+                self.graph.add_node(nearest_node, is_baseline=True)
+            self.graph.add_edge(nearest_node, node_id, label=best_similarity)
+
+        return stream_index
+
+    def component_for_query(self, stream_index: int) -> nx.Graph:
+        node_id = ("query", stream_index)
+        nodes = nx.node_connected_component(self.graph, node_id)
+        return self.graph.subgraph(nodes).copy()
+
+    def candidate_components(self, minimum_nodes: int) -> list[nx.Graph]:
+        components = []
+        for nodes in nx.connected_components(self.graph):
+            query_count = sum(node[0] == "query" for node in nodes)
+            if query_count >= minimum_nodes:
+                components.append(self.graph.subgraph(nodes).copy())
+        return components
+
+
+def graph_to_pyg_line_graph(graph: nx.Graph, label: int) -> Data:
+    """Turn edge PAS values into line-graph node features."""
+
+    if graph.number_of_edges() == 0:
+        return Data(
+            x=torch.zeros((1, 1), dtype=torch.float32),
+            edge_index=torch.empty((2, 0), dtype=torch.long),
+            y=torch.tensor([label], dtype=torch.long),
+        )
+
+    line_graph = nx.line_graph(graph)
+    for original_edge in line_graph.nodes:
+        u, v = original_edge
+        line_graph.nodes[original_edge]["pas"] = float(graph.edges[u, v]["label"])
+
+    data = from_networkx(line_graph, group_node_attrs=["pas"])
+    data.x = data.x.float().reshape(-1, 1)
+    data.y = torch.tensor([label], dtype=torch.long)
+    return data
+
+
+def _split_flat_sequence(
+    sequence: PromptSequence,
+    desired_sequences: int,
+    minimum_length: int,
+) -> list[PromptSequence]:
+    """Create independent contiguous sequences when a file has no sequence IDs."""
+
+    if desired_sequences <= 1 or len(sequence.prompts) < 2 * minimum_length:
+        return [sequence]
+
+    usable_count = min(desired_sequences, len(sequence.prompts) // minimum_length)
+    chunks = np.array_split(np.asarray(sequence.prompts, dtype=object), usable_count)
+    return [
+        PromptSequence(
+            sequence.source,
+            f"{sequence.sequence_id}:chunk-{index}",
+            [str(prompt) for prompt in chunk.tolist()],
+        )
+        for index, chunk in enumerate(chunks)
+        if len(chunk) >= minimum_length
+    ]
+
+
+def select_attack_sequences(
+    sequences: Sequence[PromptSequence],
+    per_source: int,
+    graph_size: int,
+    rng: random.Random,
+) -> list[PromptSequence]:
+    by_source: dict[str, list[PromptSequence]] = defaultdict(list)
+    for sequence in sequences:
+        by_source[sequence.source].append(sequence)
+
+    selected = []
+    for source, source_sequences in by_source.items():
+        expanded = source_sequences
+        if len(source_sequences) == 1:
+            expanded = _split_flat_sequence(source_sequences[0], per_source, graph_size)
+        rng.shuffle(expanded)
+        selected.extend(expanded[:per_source])
+        print(f"[DATA] attack source={source}: selected {min(per_source, len(expanded))} sequences")
+    return selected
+
+
+def build_attack_samples(
+    sequences: Sequence[PromptSequence],
+    sequence_embeddings: dict[str, np.ndarray],
+    baseline_embeddings: np.ndarray,
+    threshold: float,
+    graph_size: int,
+) -> list[GraphSample]:
+    samples = []
+    for sequence in sequences:
+        builder = ProvenanceGraphBuilder(baseline_embeddings, threshold)
+        for index, embedding in enumerate(sequence_embeddings[sequence.sequence_id]):
+            builder.add(embedding)
+            if (index + 1) % graph_size != 0:
+                continue
+            component = builder.component_for_query(index)
+            query_count = sum(
+                not attributes.get("is_baseline", False)
+                for _, attributes in component.nodes(data=True)
+            )
+            if query_count < graph_size:
+                continue
+            samples.append(
+                GraphSample(
+                    graph_to_pyg_line_graph(component, label=1),
+                    label=1,
+                    group_id=f"attack:{sequence.sequence_id}",
+                    source=sequence.source,
+                )
+            )
+    return samples
+
+
+def build_benign_samples(
+    embeddings: np.ndarray,
+    baseline_embeddings: np.ndarray,
+    threshold: float,
+    graph_size: int,
+    snapshot_interval: int,
+    components_per_snapshot: int,
+) -> list[GraphSample]:
+    samples = []
+    for block_index, start in enumerate(range(0, len(embeddings), snapshot_interval)):
+        block = embeddings[start:start + snapshot_interval]
+        if len(block) < graph_size:
+            continue
+        builder = ProvenanceGraphBuilder(baseline_embeddings, threshold)
+        for embedding in block:
+            builder.add(embedding)
+
+        candidates = builder.candidate_components(graph_size)
+        candidates.sort(key=lambda graph: graph.number_of_nodes(), reverse=True)
+        for component in candidates[:components_per_snapshot]:
+            samples.append(
+                GraphSample(
+                    graph_to_pyg_line_graph(component, label=0),
+                    label=0,
+                    group_id=f"benign:block-{block_index}",
+                    source="benign",
+                )
+            )
+    return samples
+
+
+def split_samples_by_group(
+    samples: Sequence[GraphSample],
+    seed: int,
+    train_ratio: float = 0.70,
+    validation_ratio: float = 0.15,
+) -> tuple[list[GraphSample], list[GraphSample], list[GraphSample]]:
+    """Split groups within each class to prevent snapshot leakage."""
+
+    rng = random.Random(seed)
+    output = {"train": [], "validation": [], "test": []}
+
+    for label in (0, 1):
+        groups: dict[str, list[GraphSample]] = defaultdict(list)
+        for sample in samples:
+            if sample.label == label:
+                groups[sample.group_id].append(sample)
+
+        group_ids = list(groups)
+        rng.shuffle(group_ids)
+        if len(group_ids) < 3:
+            raise ValueError(
+                f"Class {label} has only {len(group_ids)} independent groups; "
+                "at least three are needed for leakage-safe train/validation/test splits"
+            )
+
+        train_end = max(1, int(round(len(group_ids) * train_ratio)))
+        validation_count = max(1, int(round(len(group_ids) * validation_ratio)))
+        train_end = min(train_end, len(group_ids) - 2)
+        validation_end = min(train_end + validation_count, len(group_ids) - 1)
+
+        assignments = {
+            "train": group_ids[:train_end],
+            "validation": group_ids[train_end:validation_end],
+            "test": group_ids[validation_end:],
+        }
+        for split_name, ids in assignments.items():
+            for group_id in ids:
+                output[split_name].extend(groups[group_id])
+
+    for split_samples in output.values():
+        rng.shuffle(split_samples)
+    return output["train"], output["validation"], output["test"]
+
+
+def _classification_counts(logits: torch.Tensor, labels: torch.Tensor):
+    predictions = logits.argmax(dim=1)
+    tp = int(((predictions == 1) & (labels == 1)).sum())
+    fp = int(((predictions == 1) & (labels == 0)).sum())
+    fn = int(((predictions == 0) & (labels == 1)).sum())
+    correct = int((predictions == labels).sum())
+    return correct, tp, fp, fn
+
+
+def _metrics(loss_sum: float, total: int, correct: int, tp: int, fp: int, fn: int):
+    precision = tp / (tp + fp) if tp + fp else 0.0
+    recall = tp / (tp + fn) if tp + fn else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    return {
+        "loss": loss_sum / total if total else 0.0,
+        "accuracy": correct / total if total else 0.0,
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+    }
+
+
+def run_epoch(model, loader, criterion, optimizer=None):
+    training = optimizer is not None
+    model.train(training)
+    loss_sum = total = correct = tp = fp = fn = 0
+
+    context = torch.enable_grad() if training else torch.no_grad()
+    with context:
+        for batch in loader:
+            batch = batch.to(DEVICE)
+            if training:
+                optimizer.zero_grad()
+            logits = model(batch.x, batch.edge_index, batch.batch)
+            loss = criterion(logits, batch.y)
+            if training:
+                loss.backward()
+                optimizer.step()
+
+            batch_size = batch.num_graphs
+            batch_correct, batch_tp, batch_fp, batch_fn = _classification_counts(
+                logits, batch.y
+            )
+            loss_sum += float(loss.item()) * batch_size
+            total += batch_size
+            correct += batch_correct
+            tp += batch_tp
+            fp += batch_fp
+            fn += batch_fn
+
+    return _metrics(loss_sum, total, correct, tp, fp, fn)
+
+
+def describe_samples(name: str, samples: Sequence[GraphSample]) -> None:
+    benign = sum(sample.label == 0 for sample in samples)
+    attack = len(samples) - benign
+    groups = len({sample.group_id for sample in samples})
+    print(f"[SPLIT] {name}: graphs={len(samples)}, benign={benign}, attack={attack}, groups={groups}")
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Train AdvGuard's deployment-matched line-graph GCN"
+    )
+    parser.add_argument("--baseline_path", nargs="+", required=True)
+    parser.add_argument("--benign_path", nargs="+", required=True)
+    parser.add_argument("--adv_path", nargs="+", required=True)
+    parser.add_argument("--baseline_column", default="prompt")
+    parser.add_argument("--benign_column", default="prompt")
+    parser.add_argument("--adv_column", default="prompt")
+    parser.add_argument(
+        "--attack_sequence_column",
+        default=None,
+        help="Optional CSV column identifying independent attack sequences",
+    )
+    parser.add_argument("--baseline_size", type=int, default=10_000)
+    parser.add_argument("--threshold_percentile", type=float, default=80.0)
+    parser.add_argument(
+        "--graph_size",
+        type=int,
+        default=10,
+        help="Paper parameter s and online detector TTD/minimum component size",
+    )
+    parser.add_argument("--attack_sequences_per_source", type=int, default=5)
+    parser.add_argument("--benign_snapshot_interval", type=int, default=500)
+    parser.add_argument("--benign_components_per_snapshot", type=int, default=5)
+    parser.add_argument("--embedding_batch_size", type=int, default=128)
+    parser.add_argument("--encoder_name", default="all-MiniLM-L6-v2")
+    parser.add_argument("--epochs", type=int, default=50)
+    parser.add_argument("--patience", type=int, default=8)
+    parser.add_argument("--batch_size", type=int, default=16)
+    parser.add_argument("--hidden_channels", type=int, default=32)
+    parser.add_argument("--lr", type=float, default=1e-3)
+    parser.add_argument("--weight_decay", type=float, default=1e-4)
+    parser.add_argument("--model_out", default="gnnTraining/model/gcn_model.pt")
+    parser.add_argument("--seed", type=int, default=42)
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    if args.graph_size < 2:
+        raise ValueError("--graph_size must be at least 2")
+    if args.benign_snapshot_interval < args.graph_size:
+        raise ValueError("--benign_snapshot_interval must be >= --graph_size")
 
     set_seed(args.seed)
-    print(f"Using device: {DEVICE}")
+    rng = random.Random(args.seed)
+    print(f"[INFO] device={DEVICE}")
 
-    # 1) Load prompts
-    benign_prompts = load_prompts(args.benign_path, column=args.benign_column)
-    adv_prompts = load_prompts(args.adv_path, column=args.adv_column)
+    baseline_prompts = load_flat_prompts(args.baseline_path, args.baseline_column)
+    if len(baseline_prompts) < args.baseline_size:
+        raise ValueError(
+            f"Requested {args.baseline_size} baseline prompts, found {len(baseline_prompts)}"
+        )
+    baseline_prompts = baseline_prompts[:args.baseline_size]
 
-    if len(benign_prompts) < 999 or len(adv_prompts) < 999:
-        raise ValueError("Need at least ~999 benign and ~999 adversarial prompts for meaningful graphs.")
-
-    # 2) Initialize text encoder
-    print("Loading SentenceTransformer encoder (all-MiniLM-L6-v2)...")
-    encoder = SentenceTransformer("all-MiniLM-L6-v2")
-
-    graphs = build_graph_dataset(
-        benign_prompts=benign_prompts,
-        adv_prompts=adv_prompts,
-        encoder=encoder,
-        num_graphs=args.num_graphs,
-        benign_size=30,
-        adv_in_attack=30,
-        percentile=args.similarity_percentile,
+    benign_prompts = load_flat_prompts(args.benign_path, args.benign_column)
+    rng.shuffle(benign_prompts)
+    attack_sequences = load_prompt_sequences(
+        args.adv_path, args.adv_column, args.attack_sequence_column
+    )
+    attack_sequences = select_attack_sequences(
+        attack_sequences,
+        args.attack_sequences_per_source,
+        args.graph_size,
+        rng,
     )
 
-    random.shuffle(graphs)
-    split = int(0.85 * len(graphs))
-    train_graphs = graphs[:split]
-    val_graphs = graphs[split:]
+    print(f"[INFO] loading encoder={args.encoder_name}")
+    encoder = SentenceTransformer(args.encoder_name)
+    baseline_embeddings = encode_prompts(
+        encoder, baseline_prompts, args.embedding_batch_size
+    )
+    threshold = baseline_similarity_threshold(
+        baseline_embeddings, args.threshold_percentile
+    )
+    print(f"[INFO] deployment similarity threshold={threshold:.6f}")
 
-    train_loader = DataLoader(train_graphs, batch_size=args.batch_size, shuffle=True)
-    val_loader = DataLoader(val_graphs, batch_size=args.batch_size, shuffle=False)
+    benign_embeddings = encode_prompts(
+        encoder, benign_prompts, args.embedding_batch_size
+    )
+    sequence_embeddings = {
+        sequence.sequence_id: encode_prompts(
+            encoder, sequence.prompts, args.embedding_batch_size
+        )
+        for sequence in attack_sequences
+    }
 
-    in_channels = train_graphs[0].x.size(-1)
-    num_classes = 2
+    attack_samples = build_attack_samples(
+        attack_sequences,
+        sequence_embeddings,
+        baseline_embeddings,
+        threshold,
+        args.graph_size,
+    )
+    benign_samples = build_benign_samples(
+        benign_embeddings,
+        baseline_embeddings,
+        threshold,
+        args.graph_size,
+        args.benign_snapshot_interval,
+        args.benign_components_per_snapshot,
+    )
+    samples = benign_samples + attack_samples
+    print(f"[DATA] generated benign={len(benign_samples)}, attack={len(attack_samples)} graphs")
+    if not benign_samples or not attack_samples:
+        raise ValueError(
+            "Graph generation produced an empty class. Add more data, lower "
+            "--graph_size, or inspect the learned threshold."
+        )
 
-    model = GCN(in_channels=in_channels,
-                hidden_channels=args.hidden_channels,
-                num_classes=num_classes).to(DEVICE)
+    train_samples, validation_samples, test_samples = split_samples_by_group(
+        samples, args.seed
+    )
+    describe_samples("train", train_samples)
+    describe_samples("validation", validation_samples)
+    describe_samples("test", test_samples)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-    criterion = torch.nn.CrossEntropyLoss()
+    train_loader = DataLoader(
+        [sample.data for sample in train_samples],
+        batch_size=args.batch_size,
+        shuffle=True,
+    )
+    validation_loader = DataLoader(
+        [sample.data for sample in validation_samples],
+        batch_size=args.batch_size,
+        shuffle=False,
+    )
+    test_loader = DataLoader(
+        [sample.data for sample in test_samples],
+        batch_size=args.batch_size,
+        shuffle=False,
+    )
 
-    print(f"Model in_channels={in_channels}, hidden={args.hidden_channels}, num_classes={num_classes}")
-    print(f"Training on {len(train_graphs)} graphs, validating on {len(val_graphs)} graphs.")
+    class_counts = np.bincount([sample.label for sample in train_samples], minlength=2)
+    class_weights = len(train_samples) / (2.0 * np.maximum(class_counts, 1))
+    criterion = torch.nn.CrossEntropyLoss(
+        weight=torch.tensor(class_weights, dtype=torch.float32, device=DEVICE)
+    )
+    model = GCN(1, args.hidden_channels, 2).to(DEVICE)
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=args.lr, weight_decay=args.weight_decay
+    )
 
-    best_val_acc = 0.0
+    best_f1 = -1.0
     best_state = None
-
+    epochs_without_improvement = 0
     for epoch in range(1, args.epochs + 1):
-        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer, criterion)
-        val_loss, val_acc = eval_one_epoch(model, val_loader, criterion)
+        train_metrics = run_epoch(model, train_loader, criterion, optimizer)
+        validation_metrics = run_epoch(model, validation_loader, criterion)
+        print(
+            f"Epoch {epoch:03d} | "
+            f"train loss={train_metrics['loss']:.4f} f1={train_metrics['f1']:.4f} | "
+            f"val loss={validation_metrics['loss']:.4f} "
+            f"acc={validation_metrics['accuracy']:.4f} "
+            f"precision={validation_metrics['precision']:.4f} "
+            f"recall={validation_metrics['recall']:.4f} "
+            f"f1={validation_metrics['f1']:.4f}"
+        )
 
-        print(f"Epoch {epoch:02d}: "
-              f"train_loss={train_loss:.4f}, train_acc={train_acc:.4f}, "
-              f"val_loss={val_loss:.4f}, val_acc={val_acc:.4f}")
+        if validation_metrics["f1"] > best_f1:
+            best_f1 = validation_metrics["f1"]
+            best_state = copy.deepcopy(model.state_dict())
+            epochs_without_improvement = 0
+        else:
+            epochs_without_improvement += 1
+            if epochs_without_improvement >= args.patience:
+                print(f"[INFO] early stopping after {epoch} epochs")
+                break
 
-        if val_acc > best_val_acc:
-            best_val_acc = val_acc
-            best_state = model.state_dict().copy()
+    if best_state is None:
+        raise RuntimeError("Training did not produce a checkpoint")
+    model.load_state_dict(best_state)
+    test_metrics = run_epoch(model, test_loader, criterion)
+    print("[TEST] " + ", ".join(f"{key}={value:.4f}" for key, value in test_metrics.items()))
 
-    if best_state is not None:
-        model.load_state_dict(best_state)
+    model_path = Path(args.model_out)
+    model_path.parent.mkdir(parents=True, exist_ok=True)
+    # Keep the serialized-module format expected by advGuard.py.
+    torch.save(model.cpu(), model_path)
 
-    torch.save(model, args.model_out)
-    print(f"Saved best model (val_acc={best_val_acc:.4f}) to: {args.model_out}")
+    metadata = {
+        "encoder_name": args.encoder_name,
+        "threshold": threshold,
+        "threshold_percentile": args.threshold_percentile,
+        "baseline_size": args.baseline_size,
+        "graph_size": args.graph_size,
+        "hidden_channels": args.hidden_channels,
+        "best_validation_f1": best_f1,
+        "test_metrics": test_metrics,
+        "split": {"train": 0.70, "validation": 0.15, "test": 0.15},
+        "seed": args.seed,
+    }
+    metadata_path = model_path.with_suffix(model_path.suffix + ".json")
+    with metadata_path.open("w", encoding="utf-8") as handle:
+        json.dump(metadata, handle, indent=2)
+    print(f"[SAVE] model={model_path}")
+    print(f"[SAVE] metadata={metadata_path}")
 
 
 if __name__ == "__main__":
