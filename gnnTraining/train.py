@@ -547,6 +547,27 @@ def describe_samples(name: str, samples: Sequence[GraphSample]) -> None:
     print(f"[SPLIT] {name}: graphs={len(samples)}, benign={benign}, attack={attack}, groups={groups}")
 
 
+def describe_graph_features(samples: Sequence[GraphSample]) -> None:
+    """Print compact diagnostics to expose indistinguishable graph classes."""
+
+    for label, label_name in ((0, "benign"), (1, "attack")):
+        selected = [sample.data for sample in samples if sample.label == label]
+        line_nodes = np.asarray([data.num_nodes for data in selected], dtype=float)
+        line_edges = np.asarray([data.num_edges for data in selected], dtype=float)
+        pas_means = np.asarray(
+            [float(data.x.mean()) for data in selected], dtype=float
+        )
+        dummy_count = sum(float(data.x.abs().sum()) == 0.0 for data in selected)
+        print(
+            f"[GRAPH] {label_name}: count={len(selected)}, "
+            f"line_nodes median={np.median(line_nodes):.1f} "
+            f"p10={np.percentile(line_nodes, 10):.1f} "
+            f"p90={np.percentile(line_nodes, 90):.1f}, "
+            f"line_edges median={np.median(line_edges):.1f}, "
+            f"PAS mean={pas_means.mean():.4f}, dummy={dummy_count}"
+        )
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Train AdvGuard's deployment-matched line-graph GCN"
@@ -658,6 +679,7 @@ def main() -> None:
             "Graph generation produced an empty class. Add more data, lower "
             "--graph_size, or inspect the learned threshold."
         )
+    describe_graph_features(samples)
 
     train_samples, validation_samples, test_samples = split_samples_by_group(
         samples, args.seed
