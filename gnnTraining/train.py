@@ -27,7 +27,6 @@ from __future__ import annotations
 import argparse
 import copy
 import json
-import os
 import random
 from collections import defaultdict
 from dataclasses import dataclass
@@ -116,13 +115,19 @@ def load_prompt_sequences(
     sequences: list[PromptSequence] = []
     for raw_path in paths:
         path = Path(raw_path)
-        source = path.stem
+        # Repository attack files usually follow
+        # ``.../<attack algorithm>/<target model>/<file>``.  Grouping by the
+        # grandparent therefore implements "five sequences per algorithm" and
+        # the full path keeps sequence identifiers unique when many files are
+        # all named e.g. ``prompt-2k.txt``.
+        source = path.parent.parent.name or path.stem
+        file_id = path.as_posix()
         suffix = path.suffix.lower()
 
         if suffix == ".txt":
             with path.open("r", encoding="utf-8") as handle:
                 prompts = _clean_prompts(handle)
-            sequences.append(PromptSequence(source, f"{source}:0", prompts))
+            sequences.append(PromptSequence(source, f"{file_id}:0", prompts))
             continue
 
         if suffix != ".csv":
@@ -144,11 +149,11 @@ def load_prompt_sequences(
                 prompts = _clean_prompts(group[prompt_column])
                 if prompts:
                     sequences.append(
-                        PromptSequence(source, f"{source}:{sequence_id}", prompts)
+                        PromptSequence(source, f"{file_id}:{sequence_id}", prompts)
                     )
         else:
             prompts = _clean_prompts(frame[prompt_column])
-            sequences.append(PromptSequence(source, f"{source}:0", prompts))
+            sequences.append(PromptSequence(source, f"{file_id}:0", prompts))
 
     return [sequence for sequence in sequences if sequence.prompts]
 
