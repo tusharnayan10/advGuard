@@ -120,7 +120,11 @@ def load_prompt_sequences(
         # grandparent therefore implements "five sequences per algorithm" and
         # the full path keeps sequence identifiers unique when many files are
         # all named e.g. ``prompt-2k.txt``.
-        source = path.parent.parent.name or path.stem
+        if "3attack_prompt" in path.parts:
+            attack_root_index = path.parts.index("3attack_prompt")
+            source = path.parts[attack_root_index + 1]
+        else:
+            source = path.parent.parent.name or path.parent.name or path.stem
         file_id = path.as_posix()
         suffix = path.suffix.lower()
 
