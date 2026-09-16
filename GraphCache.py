@@ -1,50 +1,20 @@
-#import networkx as nx
-#
-#class CacheGraph(object):
-#    def __init__(self, graph):
-#        self.graph = graph
-#        self.node_nums = len(graph.nodes)
-#        self.edge_nums = len(graph.edges)
-#
-#        total_weight = 0.0
-#
-#        for u, v in graph.edges():
-#            total_weight += graph.get_edge_data(u, v).get('label', 0.0)
-#
-#        if self.edge_nums > 0:
-#            self.score = total_weight
-#        else:
-#            self.score = 0.0
-#
-#    def GetGraphScore(self):
-#        return self.score
-    
+"""Scoring wrapper for connected prompt-provenance components."""
 
 
-import networkx as nx
-
-class CacheGraph(object):
+class CacheGraph:
     def __init__(self, graph):
         self.graph = graph
-        self.node_nums = len(graph.nodes)
-        self.edge_nums = len(graph.edges)
+        self.node_nums = graph.number_of_nodes()
+        self.edge_nums = graph.number_of_edges()
 
-        total_weight = 0.0
-
-        for u, v in graph.edges():
-            total_weight += graph.get_edge_data(u, v).get('label', 0.0)
-
-        if self.edge_nums > 0:
-            avg_sim = total_weight / self.edge_nums
-        else:
-            avg_sim = 0.0
-
-        if self.node_nums > 1:
-            density = (2 * self.edge_nums) / (self.node_nums * (self.node_nums - 1))
-        else:
-            density = 0.0
-
-        self.score = avg_sim * density
+        # PAS/cosine similarity is stored in each edge's ``label`` field.
+        # Summing it rewards both high association strength and repeated
+        # aggregation, so a growing coordinated-query component receives a
+        # progressively larger anomaly score.
+        self.score = sum(
+            float(data.get("label", 0.0))
+            for _, _, data in graph.edges(data=True)
+        )
 
     def GetGraphScore(self):
         return self.score
