@@ -12,8 +12,9 @@ Training samples follow the paper's intended cadence:
 * up to ``attack_sequences_per_source`` attack sequences are selected from
   every attack source/algorithm and snapshotted every ``graph_size`` queries;
 * benign prompts are shuffled and processed in independent blocks of
-  ``benign_snapshot_interval`` queries; candidate components are saved from
-  each block;
+  ``benign_snapshot_interval`` queries; the full provenance graph is saved for
+  each block, as described in the paper, and unusually large benign components
+  may additionally be retained as hard negatives;
 * sequence/block groups are kept intact across train, validation, and test
   sets so overlapping snapshots cannot leak across splits.
 
@@ -244,11 +245,6 @@ class ProvenanceGraphBuilder:
 
         return stream_index
 
-    def component_for_query(self, stream_index: int) -> nx.Graph:
-        node_id = ("query", stream_index)
-        nodes = nx.node_connected_component(self.graph, node_id)
-        return self.graph.subgraph(nodes).copy()
-
     def candidate_components(self, minimum_nodes: int) -> list[nx.Graph]:
         components = []
         for nodes in nx.connected_components(self.graph):
@@ -337,16 +333,14 @@ def build_attack_samples(
             builder.add(embedding)
             if (index + 1) % graph_size != 0:
                 continue
-            component = builder.component_for_query(index)
-            query_count = sum(
-                not attributes.get("is_baseline", False)
-                for _, attributes in component.nodes(data=True)
-            )
-            if query_count < graph_size:
-                continue
+            # The paper saves the query-provenance graph every s queries.  Do
+            # not require all s queries to fall in one connected component:
+            # that would preferentially keep only the easiest, most strongly
+            # clustered attacks.
+            snapshot = builder.graph.copy()
             samples.append(
                 GraphSample(
-                    graph_to_pyg_line_graph(component, label=1),
+                    graph_to_pyg_line_graph(snapshot, label=1),
                     label=1,
                     group_id=f"attack:{sequence.sequence_id}",
                     source=sequence.source,
@@ -364,6 +358,8 @@ def build_benign_samples(
     components_per_snapshot: int,
 ) -> list[GraphSample]:
     samples = []
+    snapshot_count = 0
+    hard_negative_count = 0
     for block_index, start in enumerate(range(0, len(embeddings), snapshot_interval)):
         block = embeddings[start:start + snapshot_interval]
         if len(block) < graph_size:
@@ -372,6 +368,25 @@ def build_benign_samples(
         for embedding in block:
             builder.add(embedding)
 
+        # Benign queries are intentionally weakly aggregated. Requiring a
+        # connected component of size s can therefore eliminate the entire
+        # negative class. The paper instead saves one graph for every 500
+        # benign queries, so the complete (possibly disconnected) provenance
+        # graph is the primary negative sample.
+        group_id = f"benign:block-{block_index}"
+        samples.append(
+            GraphSample(
+                graph_to_pyg_line_graph(builder.graph.copy(), label=0),
+                label=0,
+                group_id=group_id,
+                source="benign-snapshot",
+            )
+        )
+        snapshot_count += 1
+
+        # Large benign components are precisely the random aggregations the
+        # GCN should learn to reject, so keep a bounded number as additional
+        # hard negatives when they exist.
         candidates = builder.candidate_components(graph_size)
         candidates.sort(key=lambda graph: graph.number_of_nodes(), reverse=True)
         for component in candidates[:components_per_snapshot]:
@@ -379,10 +394,15 @@ def build_benign_samples(
                 GraphSample(
                     graph_to_pyg_line_graph(component, label=0),
                     label=0,
-                    group_id=f"benign:block-{block_index}",
-                    source="benign",
+                    group_id=group_id,
+                    source="benign-hard-negative",
                 )
             )
+            hard_negative_count += 1
+    print(
+        f"[DATA] benign snapshots={snapshot_count}, "
+        f"hard-negative components={hard_negative_count}"
+    )
     return samples
 
 
