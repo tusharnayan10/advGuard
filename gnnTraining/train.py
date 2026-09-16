@@ -43,7 +43,7 @@ from sentence_transformers import SentenceTransformer
 from torch.nn import Linear
 from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
-from torch_geometric.nn import GCNConv, global_mean_pool
+from torch_geometric.nn import GCNConv, global_max_pool, global_mean_pool
 from torch_geometric.utils import from_networkx
 
 
@@ -84,15 +84,23 @@ class GCN(torch.nn.Module):
         self.conv1 = GCNConv(in_channels, hidden_channels)
         self.conv2 = GCNConv(hidden_channels, hidden_channels)
         self.conv3 = GCNConv(hidden_channels, hidden_channels)
-        self.lin = Linear(hidden_channels, num_classes)
+        # Mean pooling alone can erase the structural difference between a
+        # weakly aggregated benign forest and a tightly aggregated attack
+        # component. Mean + max preserves both the overall response and the
+        # strongest local structural response while retaining one linear head.
+        self.lin = Linear(2 * hidden_channels, num_classes)
 
     def forward(self, x, edge_index, batch):
         x = self.conv1(x, edge_index).relu()
         x = self.conv2(x, edge_index).relu()
         x = self.conv3(x, edge_index).relu()
-        x = global_mean_pool(x, batch)
-        x = F.dropout(x, p=0.5, training=self.training)
-        return self.lin(x)
+        graph_embedding = torch.cat(
+            [global_mean_pool(x, batch), global_max_pool(x, batch)], dim=1
+        )
+        graph_embedding = F.dropout(
+            graph_embedding, p=0.5, training=self.training
+        )
+        return self.lin(graph_embedding)
 
 
 def _clean_prompts(values: Iterable[object]) -> list[str]:
@@ -455,27 +463,51 @@ def _classification_counts(logits: torch.Tensor, labels: torch.Tensor):
     tp = int(((predictions == 1) & (labels == 1)).sum())
     fp = int(((predictions == 1) & (labels == 0)).sum())
     fn = int(((predictions == 0) & (labels == 1)).sum())
+    tn = int(((predictions == 0) & (labels == 0)).sum())
     correct = int((predictions == labels).sum())
-    return correct, tp, fp, fn
+    return correct, tp, fp, fn, tn
 
 
-def _metrics(loss_sum: float, total: int, correct: int, tp: int, fp: int, fn: int):
+def _metrics(
+    loss_sum: float,
+    total: int,
+    correct: int,
+    tp: int,
+    fp: int,
+    fn: int,
+    tn: int,
+):
     precision = tp / (tp + fp) if tp + fp else 0.0
     recall = tp / (tp + fn) if tp + fn else 0.0
     f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    specificity = tn / (tn + fp) if tn + fp else 0.0
+    balanced_accuracy = (recall + specificity) / 2.0
+    negative_precision = tn / (tn + fn) if tn + fn else 0.0
+    negative_f1 = (
+        2 * negative_precision * specificity / (negative_precision + specificity)
+        if negative_precision + specificity
+        else 0.0
+    )
     return {
         "loss": loss_sum / total if total else 0.0,
         "accuracy": correct / total if total else 0.0,
         "precision": precision,
         "recall": recall,
+        "specificity": specificity,
+        "balanced_accuracy": balanced_accuracy,
         "f1": f1,
+        "macro_f1": (f1 + negative_f1) / 2.0,
+        "tp": tp,
+        "fp": fp,
+        "fn": fn,
+        "tn": tn,
     }
 
 
 def run_epoch(model, loader, criterion, optimizer=None):
     training = optimizer is not None
     model.train(training)
-    loss_sum = total = correct = tp = fp = fn = 0
+    loss_sum = total = correct = tp = fp = fn = tn = 0
 
     context = torch.enable_grad() if training else torch.no_grad()
     with context:
@@ -490,17 +522,22 @@ def run_epoch(model, loader, criterion, optimizer=None):
                 optimizer.step()
 
             batch_size = batch.num_graphs
-            batch_correct, batch_tp, batch_fp, batch_fn = _classification_counts(
-                logits, batch.y
-            )
+            (
+                batch_correct,
+                batch_tp,
+                batch_fp,
+                batch_fn,
+                batch_tn,
+            ) = _classification_counts(logits, batch.y)
             loss_sum += float(loss.item()) * batch_size
             total += batch_size
             correct += batch_correct
             tp += batch_tp
             fp += batch_fp
             fn += batch_fn
+            tn += batch_tn
 
-    return _metrics(loss_sum, total, correct, tp, fp, fn)
+    return _metrics(loss_sum, total, correct, tp, fp, fn, tn)
 
 
 def describe_samples(name: str, samples: Sequence[GraphSample]) -> None:
@@ -655,7 +692,8 @@ def main() -> None:
         model.parameters(), lr=args.lr, weight_decay=args.weight_decay
     )
 
-    best_f1 = -1.0
+    best_balanced_accuracy = -1.0
+    best_validation_loss = float("inf")
     best_state = None
     epochs_without_improvement = 0
     for epoch in range(1, args.epochs + 1):
@@ -668,11 +706,21 @@ def main() -> None:
             f"acc={validation_metrics['accuracy']:.4f} "
             f"precision={validation_metrics['precision']:.4f} "
             f"recall={validation_metrics['recall']:.4f} "
-            f"f1={validation_metrics['f1']:.4f}"
+            f"specificity={validation_metrics['specificity']:.4f} "
+            f"balanced_acc={validation_metrics['balanced_accuracy']:.4f} "
+            f"macro_f1={validation_metrics['macro_f1']:.4f}"
         )
 
-        if validation_metrics["f1"] > best_f1:
-            best_f1 = validation_metrics["f1"]
+        balanced_accuracy = validation_metrics["balanced_accuracy"]
+        validation_loss = validation_metrics["loss"]
+        improved = balanced_accuracy > best_balanced_accuracy + 1e-6
+        tied_but_lower_loss = (
+            abs(balanced_accuracy - best_balanced_accuracy) <= 1e-6
+            and validation_loss < best_validation_loss - 1e-6
+        )
+        if improved or tied_but_lower_loss:
+            best_balanced_accuracy = balanced_accuracy
+            best_validation_loss = validation_loss
             best_state = copy.deepcopy(model.state_dict())
             epochs_without_improvement = 0
         else:
@@ -699,7 +747,8 @@ def main() -> None:
         "baseline_size": args.baseline_size,
         "graph_size": args.graph_size,
         "hidden_channels": args.hidden_channels,
-        "best_validation_f1": best_f1,
+        "best_validation_balanced_accuracy": best_balanced_accuracy,
+        "best_validation_loss": best_validation_loss,
         "test_metrics": test_metrics,
         "split": {"train": 0.70, "validation": 0.15, "test": 0.15},
         "seed": args.seed,
