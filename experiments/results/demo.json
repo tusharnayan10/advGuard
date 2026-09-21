@@ -1,0 +1,295 @@
+{
+  "status": "synthetic_smoke_test",
+  "caveat": "Largest component per session, without baseline nodes or Grubbs candidate selection. Not an end-to-end AdvGuard evaluation.",
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+  "threshold": 0.5,
+  "sessions": 24,
+  "split": {
+    "train": 14,
+    "validation": 5,
+    "test": 5
+  },
+  "component_sizes": {
+    "min": 11,
+    "median": 12.0,
+    "max": 12
+  },
+  "min_component_size": 30,
+  "results": {
+    "code_score_only": {
+      "n": 5,
+      "accuracy": 0.8,
+      "f1": 0.8,
+      "fpr": 0.3333333333333333,
+      "recall": 1.0,
+      "auroc": 0.6666666666666667
+    },
+    "paper_sum_only": {
+      "n": 5,
+      "accuracy": 0.4,
+      "f1": 0.0,
+      "fpr": 0.3333333333333333,
+      "recall": 0.0,
+      "auroc": 0.6666666666666667
+    },
+    "handcrafted_topology": {
+      "n": 5,
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "recall": 1.0,
+      "auroc": 1.0
+    },
+    "original_1gcn": {
+      "n": 5,
+      "accuracy": 0.6,
+      "f1": 0.0,
+      "fpr": 0.0,
+      "recall": 0.0,
+      "auroc": 1.0
+    },
+    "original_3gcn": {
+      "n": 5,
+      "accuracy": 0.4,
+      "f1": 0.5714285714285714,
+      "fpr": 1.0,
+      "recall": 1.0,
+      "auroc": 1.0
+    },
+    "line_1gcn": {
+      "n": 5,
+      "accuracy": 0.6,
+      "f1": 0.0,
+      "fpr": 0.0,
+      "recall": 0.0,
+      "auroc": 0.6666666666666667
+    },
+    "line_3gcn": {
+      "n": 5,
+      "accuracy": 0.4,
+      "f1": 0.5714285714285714,
+      "fpr": 1.0,
+      "recall": 1.0,
+      "auroc": 0.6666666666666667
+    }
+  },
+  "matched_test_pairs": 2,
+  "matched_results": {
+    "code_score_only": {
+      "n": 4,
+      "accuracy": 0.75,
+      "f1": 0.8,
+      "fpr": 0.5,
+      "recall": 1.0,
+      "auroc": 0.5
+    },
+    "paper_sum_only": {
+      "n": 4,
+      "accuracy": 0.5,
+      "f1": 0.0,
+      "fpr": 0.0,
+      "recall": 0.0,
+      "auroc": 1.0
+    },
+    "handcrafted_topology": {
+      "n": 4,
+      "accuracy": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "recall": 1.0,
+      "auroc": 1.0
+    },
+    "original_1gcn": {
+      "n": 4,
+      "accuracy": 0.5,
+      "f1": 0.0,
+      "fpr": 0.0,
+      "recall": 0.0,
+      "auroc": 1.0
+    },
+    "original_3gcn": {
+      "n": 4,
+      "accuracy": 0.5,
+      "f1": 0.6666666666666666,
+      "fpr": 1.0,
+      "recall": 1.0,
+      "auroc": 1.0
+    },
+    "line_1gcn": {
+      "n": 4,
+      "accuracy": 0.5,
+      "f1": 0.0,
+      "fpr": 0.0,
+      "recall": 0.0,
+      "auroc": 1.0
+    },
+    "line_3gcn": {
+      "n": 4,
+      "accuracy": 0.5,
+      "f1": 0.6666666666666666,
+      "fpr": 1.0,
+      "recall": 1.0,
+      "auroc": 1.0
+    }
+  },
+  "topology_pairs": [
+    {
+      "chain": {
+        "paper_sum": 24.05,
+        "code_score": 0.055287,
+        "max_degree": 2,
+        "line_edges": 28,
+        "original_edges": 29
+      },
+      "star": {
+        "paper_sum": 24.05,
+        "code_score": 0.055287,
+        "max_degree": 29,
+        "line_edges": 406,
+        "original_edges": 29
+      },
+      "branch": {
+        "paper_sum": 24.05,
+        "code_score": 0.055287,
+        "max_degree": 15,
+        "line_edges": 119,
+        "original_edges": 29
+      }
+    },
+    {
+      "chain": {
+        "paper_sum": 24.09,
+        "code_score": 0.055379,
+        "max_degree": 2,
+        "line_edges": 28,
+        "original_edges": 29
+      },
+      "star": {
+        "paper_sum": 24.09,
+        "code_score": 0.055379,
+        "max_degree": 29,
+        "line_edges": 406,
+        "original_edges": 29
+      },
+      "branch": {
+        "paper_sum": 24.09,
+        "code_score": 0.055379,
+        "max_degree": 15,
+        "line_edges": 119,
+        "original_edges": 29
+      }
+    },
+    {
+      "chain": {
+        "paper_sum": 24.08,
+        "code_score": 0.055356,
+        "max_degree": 2,
+        "line_edges": 28,
+        "original_edges": 29
+      },
+      "star": {
+        "paper_sum": 24.08,
+        "code_score": 0.055356,
+        "max_degree": 29,
+        "line_edges": 406,
+        "original_edges": 29
+      },
+      "branch": {
+        "paper_sum": 24.08,
+        "code_score": 0.055356,
+        "max_degree": 15,
+        "line_edges": 119,
+        "original_edges": 29
+      }
+    },
+    {
+      "chain": {
+        "paper_sum": 24.07,
+        "code_score": 0.055333,
+        "max_degree": 2,
+        "line_edges": 28,
+        "original_edges": 29
+      },
+      "star": {
+        "paper_sum": 24.07,
+        "code_score": 0.055333,
+        "max_degree": 29,
+        "line_edges": 406,
+        "original_edges": 29
+      },
+      "branch": {
+        "paper_sum": 24.07,
+        "code_score": 0.055333,
+        "max_degree": 15,
+        "line_edges": 119,
+        "original_edges": 29
+      }
+    },
+    {
+      "chain": {
+        "paper_sum": 24.06,
+        "code_score": 0.05531,
+        "max_degree": 2,
+        "line_edges": 28,
+        "original_edges": 29
+      },
+      "star": {
+        "paper_sum": 24.06,
+        "code_score": 0.05531,
+        "max_degree": 29,
+        "line_edges": 406,
+        "original_edges": 29
+      },
+      "branch": {
+        "paper_sum": 24.06,
+        "code_score": 0.05531,
+        "max_degree": 15,
+        "line_edges": 119,
+        "original_edges": 29
+      }
+    }
+  ],
+  "topology_probe_predictions": {
+    "code_score_only": {
+      "chain": 0.9978245918302925,
+      "star": 0.9978245918302925,
+      "branch": 0.9978245918302925
+    },
+    "paper_sum_only": {
+      "chain": 0.9999978618280686,
+      "star": 0.9999978618280686,
+      "branch": 0.9999978618280686
+    },
+    "handcrafted_topology": {
+      "chain": 1.0,
+      "star": 0.9999999994293354,
+      "branch": 0.9999999999999991
+    },
+    "original_1gcn": {
+      "chain": 0.49751579761505127,
+      "star": 0.4895623028278351,
+      "branch": 0.494535356760025
+    },
+    "original_3gcn": {
+      "chain": 0.5095614790916443,
+      "star": 0.5069838762283325,
+      "branch": 0.5085773468017578
+    },
+    "line_1gcn": {
+      "chain": 0.4919968843460083,
+      "star": 0.4920298159122467,
+      "branch": 0.4919130802154541
+    },
+    "line_3gcn": {
+      "chain": 0.5057713985443115,
+      "star": 0.5057846307754517,
+      "branch": 0.5057150721549988
+    }
+  },
+  "topology_probe_warning": "Thirty-node schematic probes match the minimum history size but may still be out of distribution; probabilities are diagnostic only.",
+  "shipped_checkpoint_topology_probe": {
+    "chain": 1.0,
+    "star": 1.0,
+    "branch": 1.0
+  }
+}
